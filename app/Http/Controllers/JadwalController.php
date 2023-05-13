@@ -1,0 +1,120 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Jadwal;
+use App\Models\Kelas;
+
+
+
+class JadwalController extends Controller
+{
+    public function index()
+    {
+        $jadwal = Jadwal::get();
+
+        return view('jadwal.index', compact('jadwal'));
+    }
+
+    public function show(Jadwal $jadwal)
+    {
+        $data = Jadwal::find($jadwal)->first;
+
+        return view('jadwal.detail', compact('data'));
+    }
+
+    public function create()
+    {
+        $jadwal = Jadwal::all();
+        $kelas = Kelas::all();
+
+        return view('jadwal.create', compact('jadwal','kelas'));
+    }
+
+    public function store(Request $request)
+    {
+     
+        $this->validate([
+            'nama' => 'required',
+            'jam_jadwal' => 'required',
+            'tanggal_jadwal' => 'required',
+            'kelas' => 'required',
+            'link' => 'required'
+        ]);
+
+        $tgl = strtotime($request->tanggal_jadwal);
+        $hari = $date('l', $tgl);
+
+        $jadwal = Jadwal::create([
+            'nama' => $request->nama,
+            'jam_jadwal' => $request->jam_jadwal,
+            'hari_jadwal' => $hari,
+            'tangal_jadwal' => $request->tangal_jadwal,
+            'link' => $request->link,
+            'kelas' => $request->kelas,
+        ]);
+
+        return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    public function edit(Jadwal $jadwal)
+    {
+        $data = Jadwal::find($jadwal)->first();
+
+        return view('jadwal.edit', compact('data'));
+    }
+
+    public function update(Request $request, Jadwal $jadwal)
+    {
+        $this->validate([
+            'nama' => 'required',
+            'jam_jadwal' => 'required',
+            'hari_jadwal' => 'required',
+            'tanggal_jadwal' => 'required',
+            'link' => 'required',
+            'kelas' => 'required',
+        ]);
+
+        $tgl = strtotime($request->tanggal_jadwal);
+        $hari = $date('l', $tgl);
+
+        $jadwal = Jadwal::find($jadwal)->first();
+
+        $jadwal->nama = $request->nama;
+        $jadwal->jam_jadwal = $request->jam_jadwal;
+        $jadwal->hari_jadwal = $hari;
+        $jadwal->tanggal_jadwal = $request->tanggal_jadwal;
+        $jadwal->link = $request->link;
+        $jadwal->save();
+
+        return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    public function destory(Jadwal $jadwal)
+    {
+        $jadwal->delete();
+
+        return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function close($id)
+    {
+        $jadwal = Jadwal::find($id);
+
+        $jadwal->buka = false;
+        $jadwal->save();
+
+        return redirect('jadwal.index')->with(['success' => 'Presensi ditutup']);
+    }
+
+    public function open($id)
+    {
+        $jadwal = Jadwal::find($id);
+
+        $jadwal->buka = true;
+        $jadwal->save();
+
+        return redirect('jadwal.index')->with(['success' => 'Presensi dibuka']);
+    }
+}
