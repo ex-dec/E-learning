@@ -17,10 +17,10 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="category" class="form-label">Kelas</label>
-                                    <select class="form-control" name="kelas" id="kelas">
+                                    <select class="form-control" name="kelas_id" id="kelas">
                                         <option hidden>Choose Kelas</option>
-                                             @foreach ($kelas as $item)
-                                                <option value="{{ $item->id }}">{{ $item->id }}</option>
+                                                @foreach ($kelas as $item)
+                                                <option value={{ $item->id }}>{{ $item->name }}</option>
                                             @endforeach
                                     </select>
                                 </div>
@@ -35,7 +35,7 @@
                                 <div class="form-group">
                                  <label class="font-weight-bold">Jam</label>
                                  <input type="time" class="form-control @error('jam_jadwal') is-invalid @enderror" name="jam_jadwal" value="{{ old('jam_jadwal') }}" placeholder="Masukkan Nama Jadwal">
-                                </div>     
+                                </div>
                                   <div class="form-group">
                                      <label class="font-weight-bold">Tanggal</label>
                                      <input type="date" class="form-control @error('tanggal_jadwal') is-invalid @enderror" name="tanggal_jadwal" value="{{ old('tanggal_jadwal') }}" placeholder="Masukkan Nama Jadwal">
@@ -43,7 +43,7 @@
                                      <div class="form-group">
                                       <label class="font-weight-bold">Link</label>
                                        <input type="url" class="form-control @error('link') is-invalid @enderror" name="link" value="{{ old('link') }}" placeholder="Masukkan Nama Jadwal">
-                                  
+
                                        <!-- error message untuk content -->
                                     @error('content')
                                         <div class="alert alert-danger mt-2">
@@ -54,7 +54,7 @@
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                                 <button type="reset" class="btn btn-md btn-warning">RESET</button>
 
-                            </form> 
+                            </form>
                         </div>
                     </div>
                 </div>

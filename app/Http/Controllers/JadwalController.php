@@ -34,25 +34,26 @@ class JadwalController extends Controller
 
     public function store(Request $request)
     {
-     
-        $this->validate([
+
+        $request->validate([
             'nama' => 'required',
             'jam_jadwal' => 'required',
             'tanggal_jadwal' => 'required',
-            'kelas' => 'required',
+            'kelas_id' => 'required',
             'link' => 'required'
         ]);
 
-        $tgl = strtotime($request->tanggal_jadwal);
-        $hari = $date('l', $tgl);
 
-        $jadwal = Jadwal::create([
+        $tgl = strtotime($request->tanggal_jadwal);
+        $hari = date('l', $tgl);
+
+        Jadwal::create([
             'nama' => $request->nama,
             'jam_jadwal' => $request->jam_jadwal,
             'hari_jadwal' => $hari,
-            'tangal_jadwal' => $request->tangal_jadwal,
+            'tanggal_jadwal' => $request->tanggal_jadwal,
             'link' => $request->link,
-            'kelas' => $request->kelas,
+            'kelas_id' => $request->kelas_id,
         ]);
 
         return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -67,17 +68,17 @@ class JadwalController extends Controller
 
     public function update(Request $request, Jadwal $jadwal)
     {
-        $this->validate([
+        $request->validate([
             'nama' => 'required',
             'jam_jadwal' => 'required',
             'hari_jadwal' => 'required',
             'tanggal_jadwal' => 'required',
             'link' => 'required',
-            'kelas' => 'required',
+            'kelas_id' => 'required',
         ]);
 
         $tgl = strtotime($request->tanggal_jadwal);
-        $hari = $date('l', $tgl);
+        $hari = date('l', $tgl);
 
         $jadwal = Jadwal::find($jadwal)->first();
 
@@ -86,6 +87,7 @@ class JadwalController extends Controller
         $jadwal->hari_jadwal = $hari;
         $jadwal->tanggal_jadwal = $request->tanggal_jadwal;
         $jadwal->link = $request->link;
+        $jadwal->kelas_id = $request->kelas_id;
         $jadwal->save();
 
         return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Diubah!']);

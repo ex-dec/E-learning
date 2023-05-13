@@ -79,7 +79,7 @@ class TugasController extends Controller
     public function edit(Tugas $tugas)
     {
         $tugas = Tugas::find($tugas)->first();
-        $kelas = Kelas::all();
+        // $kelas = Kelas::all();
         // return view('tugas.edit', [
         //     'tugas' => $tugas,
         //     'kelas' => $kelas,

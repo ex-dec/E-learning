@@ -24,17 +24,16 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jadwal->nama }}</td>
-                                    <td>{{ $jadwal->kelas }}</td>
-                                    <td>{!!$jadwal->content !!}</td>
+                                    <td>{{ $jadwal->kelas->name }}</td>
+                                    <td>{!!$jadwal->hari_jadwal !!}</td>
                                     <td>
-                                        <a href={{ route('buka') }} class="btn btn-sm btn-primary">Buka</a>
-                                       </td>
-                                       <a href={{ route('tutup') }} class="btn btn-sm btn-primary">Tutup</a>
-                                       </td>
-                                   
+                                        <a href={{ route('buka', $jadwal->id) }} class="btn btn-sm btn-primary">Buka</a>
+                                        </td>
+                                        <a href={{ route('tutup', $jadwal->id) }} class="btn btn-sm btn-primary">Tutup</a>
+                                        </td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('jadwal.destroy', $jadwal->id) }}" method="POST">
-                                            <a href="{{ route('jadwal.edit', $materi->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            <a href="{{ route('jadwal.edit', $jadwal->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -47,7 +46,7 @@
                                 </div>
                             @endforelse
                             </tbody>
-                        </table>  
+                        </table>
                         {{-- {{ $jadwal->links() }} --}}
                     </div>
                 </div>
@@ -60,13 +59,13 @@
     <script>
         //message with toastr
         @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
 
         @elseif(session()->has('error'))
 
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
         @endif
-    </script> 
+    </script>
 @endsection
