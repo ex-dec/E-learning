@@ -10,9 +10,14 @@ class Tugas extends Model
     use HasFactory;
     protected $table = "tugas";
     public $timestamps = false;
-    protected $fillable =[
+    protected $fillable = [
         'tugas_url',
         'deadline',
         'kelas_id',
+        'nama'
     ];
+
+    public function kelas(){
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
+    }
 }

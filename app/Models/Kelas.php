@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \app\Models\tugas.php;
-
 
 class Kelas extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name'
+    ];
+
     public function tugas(){
-        return $this->hasMany(tugas::class, )
+        return $this->hasMany(Tugas::class, 'id', 'kelas_id');
     }
 }

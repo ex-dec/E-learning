@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class TugasController extends Controller
-{    
+{
     /**
      * index
      *
@@ -19,9 +19,10 @@ class TugasController extends Controller
         //get tugas
        $tugas = Tugas::all();
 
-        
         //render view with tugas
-        return view('tugas.index', compact('tugas'));
+        return view('tugas.index', [
+            'tugas' => $tugas
+        ]);
         // return view('tugas.index', [
         //     'tugas' => $tugas
         // ]);
@@ -35,7 +36,7 @@ class TugasController extends Controller
     {
         $kelas = Kelas::all();
         return view('tugas.create', compact('kelas'));
-    
+
     }
 
     // /**
@@ -48,19 +49,19 @@ class TugasController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10',
+            'title'     => 'required',
+            'content'   => 'required',
         ]);
-        $file = $request->file('file');
+        // $file = $request->file('file');
         // dd($file);
         // $file->move(public_path('posts'), $file->hashName());
-        $file->storeAs('public/posts', $file->hashName());
+        // $file->storeAs('public/posts', $file->hashName());
         // dd($request);
         //create Tugas
         Tugas::create([
-            'file_url'  => $file->hashName(),
+            'tugas_url'  => $request->tugas_url,
             'nama'     => $request->title,
-            'kelas'     => $request->kelas,
+            'kelas_id'     => $request->kelas,
             'content'   => $request->content,
             // 'content'   => $request->content,
         ]);
@@ -79,13 +80,13 @@ class TugasController extends Controller
     {
         $tugas = Tugas::find($tugas)->first();
         $kelas = Kelas::all();
-        return view('tugas.edit', [
-            'tugas' => $tugas,
-            'kelas' => $kelas,
-            'content' => $content,
-        ]);
+        // return view('tugas.edit', [
+        //     'tugas' => $tugas,
+        //     'kelas' => $kelas,
+        //     'content' => $content,
+        // ]);
     }
-    
+
     /**
      * update
      *
@@ -111,9 +112,10 @@ class TugasController extends Controller
         return redirect()->route('tugas.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    public function destroy(Tugas $tugas)
+    public function destroy($id)
     {
         //delete post
+        $tugas = Tugas::find($id);
         $tugas->delete();
 
         //redirect to index

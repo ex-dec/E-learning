@@ -21,14 +21,14 @@
                             <tbody>
                             @forelse ($tugas as $tugas)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $tugas->id }}</td>
                                     <td>{{ $tugas->nama }}</td>
-                                    <td>{{ $tugas->kelas }}</td>
+                                    <td>{{ $tugas->kelas->name }}</td>
                                     <td>{!! $tugas->content !!}</td>
                                     <td>
-                                        <a href={{ asset('storage/posts/' . $tugas->file_url) }} class="btn btn-sm btn-primary">Open</a>
+                                        <a href={{ $tugas->tugas_url }} class="btn btn-sm btn-primary">Open</a>
                                        </td>
-                                   
+
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('tugas.destroy', $tugas->id) }}" method="POST">
                                             <a href="{{ route('tugas.edit', $tugas->id) }}" class="btn btn-sm btn-primary">EDIT</a>
@@ -44,8 +44,8 @@
                                 </div>
                             @endforelse
                             </tbody>
-                        </table>  
-                        {{ $tugas->links() }}
+                        </table>
+                        {{-- {{ $tugas->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -57,13 +57,13 @@
     <script>
         //message with toastr
         @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
 
         @elseif(session()->has('error'))
 
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
         @endif
-    </script> 
+    </script>
 @endsection

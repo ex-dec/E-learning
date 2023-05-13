@@ -20,7 +20,7 @@
                                     <select class="form-control" name="kelas" id="kelas">
                                         <option hidden>Choose Kelas</option>
                                             @foreach ($kelas as $item)
-                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                     </select>
                                 </div>
@@ -34,11 +34,11 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Keterangan</label>
-                                    <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Keterangan Tugas">{{ old('content') }}</textarea>
-                                
+                                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" placeholder="Masukkan Keterangan Tugas">{{ old('content') }}</textarea>
+
                                     <div class="form-group">
-                                <label class="font-weight-bold">File</label>
-                                <input type="file" class="form-control @error('file') is-invalid @enderror" name="file">
+                                <label class="font-weight-bold">Link Tugas</label>
+                                <input type="url" class="form-control @error('tugas_url') is-invalid @enderror" name="tugas_url">
 
                                     <!-- error message untuk content -->
                                     @error('content')
@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
                                 <button type="reset" class="btn btn-md btn-warning">RESET</button>
 
-                            </form> 
+                            </form>
                         </div>
                     </div>
                 </div>
