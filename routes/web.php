@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,10 +47,19 @@ Route::resource('/materis', \App\Http\Controllers\MateriController::class);
 // });
 
 Route::get('getCourse/{id}', function ($id) {
-    $course = App\Models\Kelas::where('kelas_id',$id)->get();
+    $course = App\Models\Kelas::where('kelas_id', $id)->get();
     return response()->json($course);
 });
 Route::resource('/tugas', \App\Http\Controllers\TugasController::class);
+Route::resource('/jadwal', \App\Http\Controllers\JadwalController::class);
+Route::get('/jadwal/close/{$id}', [JadwalController::class, 'close'])->name('tutup');
+Route::get('/jadwal/open/{$id}', [JadwalController::class, 'open'])->name('buka');
+Route::post('/jadwal/simpan', [JadwalController::class, 'store'])->name('jadwal.store');
+
+Route::prefix('presensi')->group(function () {
+    Route::get('/get/{jadwalId}', [PresensiController::class, 'showByJadwalId']);
+    Route::get('/{jadwalId}', [PresensiController::class, 'store']);
+});
 // Route::get('/', function () {
 //     return view('tugas.index');
 

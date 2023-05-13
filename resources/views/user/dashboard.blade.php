@@ -1,17 +1,36 @@
 @extends('user.layouts.navbar')
 @section('title', 'Dashboard')
 @section('content')
-<div class="container">
-  <div class="row">
-    <div class="col-3">
-      <img src="image1.jpg" alt="Image 1" class="img-fluid">
+<div class="border border-black vh-100 d-flex align-items-center">
+  <div class="container bg-white">
+    <div class="row same-height">
+      <div class="col-md-4">
+          <div class="card">
+              <div class="header-statistics">
+                  <h5>Selamat Datang Admin</h5>
+              </div>
+              <div class="card-body">
+              </div>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+            <div class="header-statistics">
+                <h5>Selamat Datang Admin</h5>
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
     </div>
-    <div class="col-3">
-      <img src="image2.jpg" alt="Image 2" class="img-fluid">
-    </div>
-    <div class="col-3">
-      <img src="image3.jpg" alt="Image 3" class="img-fluid">
-    </div>
+    <div class="col-md-4">
+      <div class="card">
+          <div class="header-statistics">
+              <h5>Selamat Datang Admin</h5>
+          </div>
+          <div class="card-body">
+          </div>
+      </div>
   </div>
+    </div>
 </div>
 @endsection

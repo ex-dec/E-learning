@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Kelas extends Model
+class Presensi extends Model
 {
     use HasFactory;
 
-    public function tugas(){
-        return $this->hasMany(Tugas::class);
-    }
+    protected $table = 'presensi';
+
+    protected $fillable = [
+        'jadwal_id',
+        'user_id',
+    ];
 }
