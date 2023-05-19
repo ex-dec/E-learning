@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('tugas', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
             $table->string('tugas_url');
             $table->dateTime('deadline')->nullable();
             $table->unsignedBigInteger('kelas_id');
+            $table->string('content');
 
             $table->foreign('kelas_id')->references('id')->on('kelas')->onDelete('cascade');
         });

@@ -14,7 +14,9 @@
                                 <th scope="col">Nama Tugas</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Keterangan</th>
-                                <th scope="col">File </th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Tanggal Deadline</th>
+                                <th scope="col">Waktu Deadline</th>
                                 <th scope="col">AKSI</th>
                             </tr>
                             </thead>

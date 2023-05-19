@@ -47,6 +47,7 @@ class TugasController extends Controller
     //  */
     public function store(Request $request)
     {
+        // dd($request);
         //validate form
         $this->validate($request, [
             'title'     => 'required',

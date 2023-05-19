@@ -14,7 +14,9 @@ class Tugas extends Model
         'tugas_url',
         'deadline',
         'kelas_id',
-        'nama'
+        'nama',
+        'content',
+
     ];
 
     public function kelas(){

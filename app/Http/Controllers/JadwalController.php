@@ -93,7 +93,7 @@ class JadwalController extends Controller
         return redirect()->route('jadwal.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
-    public function destory(Jadwal $jadwal)
+    public function destroy(Jadwal $jadwal)
     {
         $jadwal->delete();
 

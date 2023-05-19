@@ -15,8 +15,9 @@
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Hari</th>
                                 <th scope="col">Tanggal</th>
+                                <th scope="col">PRESENSI</th>
                                 <th scope="col">AKSI</th>
-                                <th scope="col">AKSI</th>
+                                <th scope="col">Link</th>
                             </tr>
                             </thead>
                             <tbody>
