@@ -141,7 +141,7 @@
                     </div>
                     <img class="img-user" src="../assets/images/avatar1.png" alt="user"srcset="">
                 </a>
-                <ul class="dropdown-menu small">
+                {{-- <ul class="dropdown-menu small">
                     <!-- <li class="menu-header">
                         <a class="dropdown-item" href="#">Notifikasi</a>
                     </li> -->
@@ -162,7 +162,7 @@
                             </div>
                         </a>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
 
         </div>

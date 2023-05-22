@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Spatie\Permission\Models\Role;
+
 
 class RegisteredUserController extends Controller
 {
@@ -46,6 +48,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        $role = Role::where('name', 'student')->first();
+        $user->assignRole($role);
+
+        return redirect(RouteServiceProvider::HOME_USER);
     }
 }

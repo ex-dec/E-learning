@@ -41,10 +41,10 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="dashboard-user">
-                <i class='fas fa-home' style='font-size:17px'></i>
+                    <i class='fas fa-home' style='font-size:17px'></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -53,7 +53,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                <i class='fas fa-book-open' style='font-size:17px'></i>
+                    <i class='fas fa-book-open' style='font-size:17px'></i>
                     <span>Materi</span></a>
             </li>
 
@@ -62,7 +62,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                <i class='fas fa-calendar-alt' style='font-size:17px'></i>
+                    <i class='fas fa-calendar-alt' style='font-size:17px'></i>
                     <span>Jadwal</span></a>
             </li>
 
@@ -71,7 +71,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
-                <i class='far fa-file-alt' style='font-size:17px'></i>
+                    <i class='far fa-file-alt' style='font-size:17px'></i>
                     <span>Tugas</span></a>
             </li>
 
@@ -79,9 +79,14 @@
             <hr class="sidebar-divider">
 
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
-                <i class="fa fa-angle-double-left" style="font-size:17px"></i>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="nav-link">
+                    <i class="fa fa-angle-double-left" style="font-size:17px"></i>
                     <span>Keluar</span></a>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -100,7 +105,7 @@
             <!-- Main Content -->
             <div id="content">
 
-            @yield('content')
+                @yield('content')
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -119,8 +124,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Sesilia</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                 </nav>
                 <!-- End of Topbar -->

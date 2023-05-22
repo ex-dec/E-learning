@@ -16,9 +16,9 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
+            <div style="background-color:#0d6efd; border-radius: 20px; border: 2px solid black;">
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    <img src="lp/assets/images/logo/logot.png" alt="" width="150" class="me-4">
                 </a>
             </div>
 

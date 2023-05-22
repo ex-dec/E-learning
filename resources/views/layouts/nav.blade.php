@@ -40,11 +40,22 @@
 
             <li>
             <li class="{{ Request::is('tugas') ? 'active' : '' }}">
-            <a href="/tugas" class="link">
+                <a href="/tugas" class="link">
                     <i class="ti-book"></i>
                     <span>Tugas</span>
                 </a>
             </li>
+            <li>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#"
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                   class="link">
+                    <i class="ti-power-off"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
         </ul>
     </div>
-</nav>  
+</nav>
