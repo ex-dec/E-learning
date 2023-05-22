@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\JadwalController;
@@ -20,9 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/dashboard-user', function () {
-    return view('user.dashboard');
-});
+
 Route::get('/materi-user', function () {
     return view('user.materi');
 });
@@ -32,9 +32,7 @@ Route::get('/jadwal-user', function () {
 
 Route::get('/tugas-user', [TugasController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
 
 // ->middleware(['auth', 'verified'])->
 
@@ -42,6 +40,28 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::prefix('/admin')->group(function () {
+        Route::get('/dashboard', function () {
+            return view('dashboard');
+        });
+        Route::resource('/admin', AdminController::class);
+        // Route::group(['middleware' => ['role:admin']], function () {
+        //     Route::resource('/admin', AdminController::class);
+        // });
+    });
+    Route::prefix('/teacher')->group(function () {
+        Route::group(['middleware' => ['role:teacher']], function () {
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+            // Route::resource('/admin', AdminController::class);
+        });
+    });
+    Route::group(['middleware' => ['role:student']], function () {
+        Route::get('/dashboard-user', function () {
+            return view('user.dashboard');
+        });
+    });
 });
 
 Route::resource('/materis', \App\Http\Controllers\MateriController::class);
@@ -67,7 +87,4 @@ Route::prefix('presensi')->group(function () {
 //     return view('tugas.index');
 
 
-require __DIR__.'/auth.php';
-
-
-
+require __DIR__ . '/auth.php';
