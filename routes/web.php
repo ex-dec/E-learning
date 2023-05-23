@@ -30,9 +30,32 @@ Route::get('/jadwal-user', function () {
     return view('user.jadwal');
 });
 
+Route::get('/dashboard-siswa', function () {
+    return view('siswa.dashboard');
+});
+
+
 Route::get('/tugas-user', [TugasController::class, 'index']);
 
+Route::get('/materi-siswa', function () {
+    return view('siswa.materi');
+});
 
+Route::get('/jadwal-online-siswa', function () {
+    return view('siswa.jadwal-online');
+});
+
+Route::get('/akses-kelas-siswa', function () {
+    return view('siswa.akses-kelas');
+});
+
+Route::get('/tugas-online-siswa', function () {
+    return view('siswa.tugas-online');
+});
+
+Route::get('/materi-detail-siswa', function () {
+    return view('siswa.materi-detail');
+});
 
 // ->middleware(['auth', 'verified'])->
 
@@ -58,8 +81,8 @@ Route::middleware('auth')->group(function () {
         });
     });
     Route::group(['middleware' => ['role:student']], function () {
-        Route::get('/dashboard-user', function () {
-            return view('user.dashboard');
+        Route::get('/dashboard-siswa', function () {
+            return view('siswa.dashboard');
         });
     });
 });
