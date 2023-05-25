@@ -62,6 +62,7 @@ class MateriController extends Controller
             'nama'     => $request->title,
             'kelas'     => $request->kelas,
             'content'   => $request->content,
+            'link_video' =>$request->link_video
             // 'content'   => $request->content,
         ]);
 
@@ -80,9 +81,11 @@ class MateriController extends Controller
         $materi = Materi::find($materi)->first();
         $kelas = Kelas::all();
         return view('materis.edit', [
+            'file_url'  => $materi->file_url,
             'materi' => $materi,
             'kelas' => $kelas,
-            'content' => $content,
+            'content' => $materi->content,
+            'link_video'=>$materi->link_video
         ]);
     }
     

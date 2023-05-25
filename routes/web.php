@@ -45,9 +45,18 @@ Route::get('/jadwal-online-siswa', function () {
     return view('siswa.jadwal-online');
 });
 
-Route::get('/akses-kelas-siswa', function () {
-    return view('siswa.akses-kelas');
+Route::get('/akses-kelas-basic-siswa', function () {
+    return view('siswa.akses-kelas-basic');
 });
+
+Route::get('/akses-video-basic-siswa', function () {
+    return view('siswa.akses-video-basic');
+});
+
+Route::get('/akses-kelas-intermediate-siswa', function () {
+    return view('siswa.akses-kelas-intermediate');
+});
+
 
 Route::get('/tugas-online-siswa', function () {
     return view('siswa.tugas-online');

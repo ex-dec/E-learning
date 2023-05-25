@@ -45,7 +45,7 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-        <a class="nav-link" href="video-online-siswa">
+        <a class="nav-link" href="akses-video-basic-siswa">
         <i class='far fa-play-circle' style='font-size:17px'></i>
             <span>Video</span></a>
     </li>

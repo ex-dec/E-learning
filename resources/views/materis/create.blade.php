@@ -40,6 +40,11 @@
                                 <label class="font-weight-bold">File</label>
                                 <input type="file" class="form-control @error('file') is-invalid @enderror" name="file">
 
+                                <div class="form-group">
+                                    <label class="font-weight-bold">Link Video</label>
+                                    <input type="text" class="form-control @error('title') is-invalid @enderror" name="link_video" value="{{ old('link_video') }}" placeholder="Masukkan Link Video">
+                                </div>
+
                                     <!-- error message untuk content -->
                                     @error('content')
                                         <div class="alert alert-danger mt-2">

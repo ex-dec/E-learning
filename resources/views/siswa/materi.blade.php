@@ -40,7 +40,7 @@
          </div>
 
          <div class="card-footer">
-         <a href="akses-kelas-siswa" class="btn btn-primary">Akses Kelas</a>
+         <a href="akses-kelas-basic-siswa" class="btn btn-primary">Akses Kelas</a>
          </div>
      </div>
  </div>
@@ -56,7 +56,7 @@
          </div>
 
          <div class="card-footer">
-         <a href="#" class="btn btn-primary">Akses Kelas</a>
+         <a href="akses-kelas-intermediate-siswa" class="btn btn-primary">Akses Kelas</a>
          </div>
      </div>
  </div>

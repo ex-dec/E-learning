@@ -15,6 +15,7 @@
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Keterangan</th>
                                 <th scope="col">File </th>
+                                <th scope="col">LINK</th>
                                 <th scope="col">AKSI</th>
                             </tr>
                             </thead>
@@ -24,10 +25,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $materi->nama }}</td>
                                     <td>{{ $materi->kelas }}</td>
-                                    <td>{!! $materi->content !!}</td>
+                                    <td>{{$materi->content}}</td>
                                     <td>
                                         <a href={{ asset('storage/posts/' . $materi->file_url) }} class="btn btn-sm btn-primary">Open</a>
-                                       </td>
+                                    </td>
+                                    <td>
+                                        <a href={{ $materi->link_video}} class="btn btn-sm btn-primary">Open</a>
+                                    </td>
+                                    
                                    
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('materis.destroy', $materi->id) }}" method="POST">

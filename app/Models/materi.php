@@ -14,6 +14,7 @@ class materi extends Model
         'nama',
         'file_url',
         'kelas',
-        'content'
+        'content',
+        'link_video'
     ];
 }
