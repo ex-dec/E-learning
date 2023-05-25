@@ -72,7 +72,7 @@
          </div>
 
          <div class="card-footer">
-         <a href="#" class="btn btn-primary">Akses Kelas</a>
+         <a href="akses-kelas-advance-siswa" class="btn btn-primary">Akses Kelas</a>
          </div>
      </div>
  </div>

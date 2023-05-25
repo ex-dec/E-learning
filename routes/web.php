@@ -57,6 +57,10 @@ Route::get('/akses-kelas-intermediate-siswa', function () {
     return view('siswa.akses-kelas-intermediate');
 });
 
+Route::get('/akses-kelas-advance-siswa', function () {
+    return view('siswa.akses-kelas-advance');
+});
+
 
 Route::get('/tugas-online-siswa', function () {
     return view('siswa.tugas-online');

@@ -26,8 +26,12 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $jadwal->nama }}</td>
                                     <td>{{ $jadwal->kelas->name }}</td>
-                                    <td>{!!$jadwal->hari_jadwal !!}</td>
+                                    <td>{{ $jadwal->hari_jadwal }}</td>
+                                    <td>{{ $jadwal->tanggal_jadwal }}</td>
+                                    <td>{{ $jadwal-> }}</td>
+                                    <td>{{ $jadwal->aksi_jadwal }}</td>
                                     <td>
+
                                         <a href={{ route('buka', $jadwal->id) }} class="btn btn-sm btn-primary">Buka</a>
                                         </td>
                                         <a href={{ route('tutup', $jadwal->id) }} class="btn btn-sm btn-primary">Tutup</a>
