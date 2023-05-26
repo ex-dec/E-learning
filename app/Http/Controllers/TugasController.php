@@ -62,6 +62,7 @@ class TugasController extends Controller
         Tugas::create([
             'tugas_url'  => $request->tugas_url,
             'nama'     => $request->title,
+            'deadline'     => $request->deadline,
             'kelas_id'     => $request->kelas,
             'content'   => $request->content,
             // 'content'   => $request->content,

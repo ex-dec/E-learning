@@ -25,7 +25,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $materi->nama }}</td>
                                     <td>{{ $materi->kelas }}</td>
-                                    <td>{{$materi->content}}</td>
+                                    <td>{{ $materi->content }}</td>
                                     <td>
                                         <a href={{ asset('storage/posts/' . $materi->file_url) }} class="btn btn-sm btn-primary">Open</a>
                                     </td>

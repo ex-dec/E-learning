@@ -61,22 +61,23 @@ class JadwalController extends Controller
 
     public function edit(Jadwal $jadwal)
     {
-        $data = Jadwal::find($jadwal)->first();
+        $jadwal = Jadwal::find($jadwal)->first();
+        $kelas = Kelas::all();
 
-        return view('jadwal.edit', compact('data'));
+        return view('jadwal.edit', compact('jadwal','kelas'));
     }
 
     public function update(Request $request, Jadwal $jadwal)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jam_jadwal' => 'required',
-            'hari_jadwal' => 'required',
-            'tanggal_jadwal' => 'required',
-            'link' => 'required',
-            'kelas_id' => 'required',
-        ]);
-
+        // $request->validate([
+        //     'nama' => 'required',
+        //     'jam_jadwal' => 'required',
+        //     'hari_jadwal' => 'required',
+        //     'tanggal_jadwal' => 'required',
+        //     'link' => 'required',
+        //     'kelas_id' => 'required',
+        // ]);
+        dd($request);
         $tgl = strtotime($request->tanggal_jadwal);
         $hari = date('l', $tgl);
 

@@ -38,11 +38,9 @@
                                
                                 <div class="form-group">
                                 <label class="font-weight-bold">Waktu Deadline</label>
-                                <input type="date" class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline" rows="5" placeholder="Masukkan Link">{{ old('content') }}</textarea>
+                                <input  class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline" type="datetime-local" >{{ old('deadline') }}
 
-                                <div class="form-group">
-                                <label class="font-weight-bold">Waktu Deadline</label>
-                                <input type="time" class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline" rows="5" placeholder="Masukkan Link">{{ old('content') }}</textarea>
+                                
 
                                 <div class="form-group">
                                 <label class="font-weight-bold">Link Tugas</label>

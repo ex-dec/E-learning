@@ -103,11 +103,17 @@ class MateriController extends Controller
         //     'nama'     => $request->title,
         //     'kelas'     => $request->kelas,
         // ]);
+        $file = $request->file('file');
+        $file->storeAs('public/posts', $file->hashName());
+
 
         //check if image is uploaded
         $materi->update([
+            'file_url'  => $file->hashName(),
             'nama'     => $request->title,
             'kelas'     => $request->kelas,
+            'content' => $request->content,
+            'link_video'=>$request->link_video
         ]);
 
         //redirect to index

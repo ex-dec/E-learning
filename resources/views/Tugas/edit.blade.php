@@ -43,12 +43,20 @@
 
                                 <div class="form-group">
                                     <label class="font-weight-bold">Keterangan</label>
-                                    <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="5" placeholder="Masukkan Keterangan Tugas">{{ old('content') }}</textarea>
-                                
-                                    <div class="form-group">
-                                <label class="font-weight-bold">File</label>
-                                <input type="file" class="form-control @error('file') is-invalid @enderror" name="file">
-                            
+                                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5" placeholder="Masukkan Keterangan Tugas">{{ old('content') }}</textarea>
+                               
+                                <div class="form-group">
+                                <label class="font-weight-bold">Waktu Deadline</label>
+                                <input type="date" class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline" rows="5" placeholder="Masukkan Link">{{ old('content') }}</textarea>
+
+                                <div class="form-group">
+                                <label class="font-weight-bold">Waktu Deadline</label>
+                                <input type="time" class="form-control @error('deadline') is-invalid @enderror" id="deadline" name="deadline" rows="5" placeholder="Masukkan Link">{{ old('content') }}</textarea>
+
+                                <div class="form-group">
+                                <label class="font-weight-bold">Link Tugas</label>
+                                <input type="url" class="form-control @error('tugas_url') is-invalid @enderror" id="tugas_url" name="tugas_url" rows="5" placeholder="Masukkan Link">{{ old('content') }}</textarea>
+
                                 <!-- error message untuk content -->
                                 @error('content')
                                     <div class="alert alert-danger mt-2">

@@ -114,6 +114,8 @@ Route::resource('/jadwal', \App\Http\Controllers\JadwalController::class);
 Route::get('/jadwal/close/{$id}', [JadwalController::class, 'close'])->name('tutup');
 Route::get('/jadwal/open/{$id}', [JadwalController::class, 'open'])->name('buka');
 Route::post('/jadwal/simpan', [JadwalController::class, 'store'])->name('jadwal.store');
+Route::post('/jadwal/update/{$id}', [JadwalController::class, 'update'])->name('jadwal.update');
+
 
 Route::prefix('presensi')->group(function () {
     Route::get('/get/{jadwalId}', [PresensiController::class, 'showByJadwalId']);
