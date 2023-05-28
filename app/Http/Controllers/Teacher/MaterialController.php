@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
 use App\Models\Material;
+use App\Models\Grade;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -13,7 +14,9 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        $materials = Material::paginate(10);
+
+        return view('teacher.material.index', compact('materials'));
     }
 
     /**
@@ -21,7 +24,8 @@ class MaterialController extends Controller
      */
     public function create()
     {
-        //
+        $grades = Grade::all();
+        return view('teacher.material.create', compact('grades'));
     }
 
     /**
@@ -29,7 +33,25 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title'     => 'required|min:5',
+            'content'   => 'required|min:10',
+        ]);
+        $file = $request->file('file');
+        // dd($file);
+        // $file->move(public_path('posts'), $file->hashName());
+        $file->storeAs('public/posts', $file->hashName());
+        // dd($request);
+        //create Materi
+        Material::create([
+            'file_url'  => $file->hashName(),
+            'nama'     => $request->title,
+            'kelas'     => $request->kelas,
+            'content'   => $request->content,
+            'link_video' =>$request->link_video
+            // 'content'   => $request->content,
+        ]);
+        return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**

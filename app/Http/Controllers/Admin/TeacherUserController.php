@@ -75,10 +75,6 @@ class TeacherUserController extends Controller
      */
     public function update(Request $request, User $teacher)
     {
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-        // ]);
         $request->validate([
             'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($teacher->id)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($teacher->id)],

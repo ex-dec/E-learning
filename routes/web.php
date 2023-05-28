@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\TeacherUserController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TugasController;
@@ -86,7 +85,6 @@ Route::middleware('auth')->group(function () {
                 return view('dashboard');
             })->name('dashboard');
             Route::resource('/teacher', TeacherUserController::class);
-            Route::resource('/grade', GradeController::class);
         });
     });
     Route::name('teacher.')->prefix('/teacher')->group(function () {
@@ -94,6 +92,9 @@ Route::middleware('auth')->group(function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             })->name('dashboard');
+            Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
+            Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
+            Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
         });
     });
     Route::name('student.')->prefix('/student')->group(function () {

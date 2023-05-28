@@ -21,27 +21,21 @@
     </div>
     <div class="sidebar-content">
         <ul>
-            <li class="{{ request()->is('teacher/dashboard') || request()->is('admin/dashboard') ? 'active' : '' }}">
+            <li class="{{ Route::is('teacher.dashboard') || Route::is('admin.dashboard') ? 'active' : '' }}">
                 @role('admin')
-                    <a href="/admin/dashboard" class="link">
+                    <a href="{{ route('admin.dashboard')}}" class="link">
                 @else
-                    <a href="/teacher/dashboard" class="link">
+                    <a href="{{ route('teacher.dashboard')}}" class="link">
                 @endrole
                         <i class="ti-home"></i>
                         <span>Dasbor</span>
                     </a>
             </li>
             @role('admin')
-            <li class="{{ request()->is('admin/teacher') ? 'active' : '' }}">
-                <a href="/admin/teacher" class="link">
+            <li class="{{ Route::is('admin.teacher.index') ? 'active' : '' }}">
+                <a href="{{ route('admin.teacher.index')}}" class="link">
                     <i class="ti-user"></i>
                     <span>Kelola Guru</span>
-                </a>
-            </li>
-            <li class="{{ request()->is('admin/grade') ? 'active' : '' }}">
-                <a href="/admin/grade" class="link">
-                    <i class="ti-menu"></i>
-                    <span>Kelola Kelas</span>
                 </a>
             </li>
             <li>
@@ -55,22 +49,22 @@
                 </a>
             </li>
             @else
-            <li class="{{ Request::is('materis') ? 'active' : '' }}">
-                <a href="/materis" class="link">
+            <li class="{{ Route::is('teacher.material.index') ? 'active' : '' }}">
+                <a href="{{ route('teacher.material.index')}}" class="link">
                     <i class="ti-book"></i>
                     <span>Materi</span>
                 </a>
             </li>
             <li>
-            <li class="{{ Request::is('jadwal') ? 'active' : '' }}">
-                <a href="/jadwal" class="link">
+            <li class="{{ Route::is('teacher.schedule.index') ? 'active' : '' }}">
+                <a href="{{ route('teacher.schedule.index')}}" class="link">
                     <i class="ti-notepad"></i>
                     <span>Jadwal</span>
                 </a>
             </li>
             <li>
-            <li class="{{ Request::is('tugas') ? 'active' : '' }}">
-                <a href="/tugas" class="link">
+            <li class="{{ Route::is('teacher.task.index')? 'active' : '' }}">
+                <a href="{{ route('teacher.task.index')}}" class="link">
                     <i class="ti-book"></i>
                     <span>Tugas</span>
                 </a>

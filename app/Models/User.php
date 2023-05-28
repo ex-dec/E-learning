@@ -45,4 +45,9 @@ class User extends Authenticatable
         }
         return $path;
     }
+
+    public function presence()
+    {
+        return $this->hasMany(Presence::class, 'id', 'user_id');
+    }
 }
