@@ -44,7 +44,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <button type="submit" class="btn btn-sm btn-danger">Link</button>
+                                            <a href="{{ $schedule->link}}" class="btn btn-sm btn-danger" target="_blank">Link</a>
                                         </td>
                                     </tr>
                                 @empty

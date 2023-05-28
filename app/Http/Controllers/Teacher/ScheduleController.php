@@ -70,8 +70,9 @@ class ScheduleController extends Controller
     public function edit(Schedule $schedule)
     {
         $grades = Grade::all();
+        $gradeSelected = Grade::find($schedule->grade_id);
 
-        return view('teacher.schedule.edit', compact('schedule', 'grades'));
+        return view('teacher.schedule.edit', compact('schedule', 'grades', 'gradeSelected'));
     }
 
     /**
@@ -82,7 +83,6 @@ class ScheduleController extends Controller
         $request->validate([
             'nama' => 'required',
             'jam_jadwal' => 'required',
-            'hari_jadwal' => 'required',
             'tanggal_jadwal' => 'required',
             'link' => 'required',
             'grade_id' => 'required',
@@ -91,7 +91,7 @@ class ScheduleController extends Controller
         $tgl = strtotime($request->tanggal_jadwal);
         $hari = date('l', $tgl);
 
-        $schedule = Schedule::find($schedule);
+        $schedule = Schedule::find($schedule)->first();
 
         if (!$schedule) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
