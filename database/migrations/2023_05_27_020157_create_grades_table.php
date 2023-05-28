@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jadwal', function (Blueprint $table) {
-            $table->boolean('buka')->default(false);
+        Schema::create('grades', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jadwal', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('grades');
     }
 };

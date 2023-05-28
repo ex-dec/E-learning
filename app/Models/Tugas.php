@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Tugas extends Model
 {
     use HasFactory;
-    protected $table = "tugas";
+
+    protected $table = 'tugas';
+
     public $timestamps = false;
+
     protected $fillable = [
         'tugas_url',
         'deadline',
         'kelas_id',
         'nama',
         'content',
-
     ];
 
-    public function kelas(){
+    public function kelas()
+    {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 }

@@ -20,7 +20,8 @@ class Jadwal extends Model
         'kelas_id',
     ];
 
-    public function kelas(){
+    public function kelas()
+    {
         return $this->belongsTo(Kelas::class, 'kelas_id', 'id');
     }
 }

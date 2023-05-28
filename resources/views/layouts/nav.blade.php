@@ -10,26 +10,57 @@
         </a>
     </div>
     <div class="sidebar-header">
-        <div class="text">ADMIN</div>
+        @role('admin')
+            <div class="text">Admin</div>
+        @else
+            <div class="text">Teacher</div>
+        @endrole
         <div class="close-sidebar action-toggle">
             <i class="ti-close"></i>
         </div>
     </div>
     <div class="sidebar-content">
         <ul>
-            <li class="{{ Request::is('dashboard') ? 'active' : '' }}">
-                <a href="/dashboard" class="link">
-                    <i class="ti-home"></i>
-                    <span>Data Aplikasi</span>
+            <li class="{{ request()->is('teacher/dashboard') || request()->is('admin/dashboard') ? 'active' : '' }}">
+                @role('admin')
+                    <a href="/admin/dashboard" class="link">
+                @else
+                    <a href="/teacher/dashboard" class="link">
+                @endrole
+                        <i class="ti-home"></i>
+                        <span>Dasbor</span>
+                    </a>
+            </li>
+            @role('admin')
+            <li class="{{ request()->is('admin/teacher') ? 'active' : '' }}">
+                <a href="/admin/teacher" class="link">
+                    <i class="ti-user"></i>
+                    <span>Kelola Guru</span>
                 </a>
             </li>
+            <li class="{{ request()->is('admin/grade') ? 'active' : '' }}">
+                <a href="/admin/grade" class="link">
+                    <i class="ti-menu"></i>
+                    <span>Kelola Kelas</span>
+                </a>
+            </li>
+            <li>
+                <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="link">
+                    <i class="ti-power-off"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            @else
             <li class="{{ Request::is('materis') ? 'active' : '' }}">
                 <a href="/materis" class="link">
                     <i class="ti-book"></i>
                     <span>Materi</span>
                 </a>
             </li>
-
             <li>
             <li class="{{ Request::is('jadwal') ? 'active' : '' }}">
                 <a href="/jadwal" class="link">
@@ -37,7 +68,6 @@
                     <span>Jadwal</span>
                 </a>
             </li>
-
             <li>
             <li class="{{ Request::is('tugas') ? 'active' : '' }}">
                 <a href="/tugas" class="link">
@@ -49,13 +79,14 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
                     @csrf
                 </form>
-                <a href="#"
-                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                   class="link">
+                <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="link">
                     <i class="ti-power-off"></i>
                     <span>Logout</span>
                 </a>
             </li>
+            @endrole
+
         </ul>
     </div>
 </nav>

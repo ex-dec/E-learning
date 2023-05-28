@@ -81,7 +81,7 @@ class JadwalController extends Controller
         $tgl = strtotime($request->tanggal_jadwal);
         $hari = date('l', $tgl);
 
-        $jadwal = Jadwal::find($jadwal)->first();
+        $jadwal = Jadwal::find($jadwal);
 
         $jadwal->nama = $request->nama;
         $jadwal->jam_jadwal = $request->jam_jadwal;

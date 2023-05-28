@@ -1,22 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Teacher;
 
-use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Grade;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
-class AdminController extends Controller
+class GradeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teacherRole = Role::where('name', 'teacher')->first();
-        $teachers = User::role($teacherRole)->get();
-
-        return view('admin.index', compact('teachers'));
+        //
     }
 
     /**
@@ -38,7 +35,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Grade $grade)
     {
         //
     }
@@ -46,7 +43,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Grade $grade)
     {
         //
     }
@@ -54,7 +51,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Grade $grade)
     {
         //
     }
@@ -62,7 +59,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Grade $grade)
     {
         //
     }
