@@ -14,7 +14,6 @@ use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 
-
 class RegisteredUserController extends Controller
 {
     /**
@@ -51,6 +50,6 @@ class RegisteredUserController extends Controller
         $role = Role::where('name', 'student')->first();
         $user->assignRole($role);
 
-        return redirect(RouteServiceProvider::HOME_USER);
+        return redirect(auth()->user()->getRedirectRoute());
     }
 }

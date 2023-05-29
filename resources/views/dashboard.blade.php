@@ -5,20 +5,22 @@
 @endpush
 
 @section('content')
-            <div class="main-content">
-            <div class="title">
-                Dashboard
-            </div>
-            <div class="content-wrapper">
-                <div class="row same-height">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="header-statistics">
-                                <h5>Selamat Datang Admin</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    {{-- <table class="table small-font table-striped table-hover table-sm">
+    <div class="main-content">
+        <div class="title">
+            Dashboard
+        </div>
+        <div class="content-wrapper">
+            <div class="row same-height">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="header-statistics">
+                            @auth
+                                <h5>Selamat Datang {{ auth()->user()->name }}</h5>
+                            @endauth
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                {{-- <table class="table small-font table-striped table-hover table-sm">
                                         <tbody>
                                             <tr>
                                                 <th scope="row">1</th>
@@ -48,15 +50,15 @@
                                             </tr>
                                         </tbody>
                                     </table> --}}
-                                </div>
-                                <img class="img-fluid" src="../assets/images/gambar1.png" alt="Gambar Dashboard">
- 
                             </div>
+                            <img class="img-fluid" src="../assets/images/gambar1.png" alt="Gambar Dashboard">
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 @endsection
 
 @push('js')

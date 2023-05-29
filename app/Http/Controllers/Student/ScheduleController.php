@@ -1,21 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
-use Spatie\Permission\Models\Role;
-use App\Models\User;
+namespace App\Http\Controllers\Student;
+
+use App\Http\Controllers\Controller;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class ScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $teacherRole = Role::where('name', 'teacher')->first();
-        $teachers = User::role($teacherRole)->get();
-
-        return view('admin.index', compact('teachers'));
+        //
     }
 
     /**
@@ -37,7 +35,7 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Schedule $schedule)
     {
         //
     }
@@ -45,7 +43,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Schedule $schedule)
     {
         //
     }
@@ -53,7 +51,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Schedule $schedule)
     {
         //
     }
@@ -61,7 +59,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Schedule $schedule)
     {
         //
     }

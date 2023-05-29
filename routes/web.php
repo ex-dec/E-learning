@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Admin\TeacherUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PresensiController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -76,34 +79,34 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::prefix('/admin')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
+    Route::name('admin.')->prefix('/admin')->group(function () {
+        Route::group(['middleware' => ['role:admin']], function () {
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+            Route::resource('/teacher', TeacherUserController::class);
         });
-        Route::resource('/admin', AdminController::class);
-        // Route::group(['middleware' => ['role:admin']], function () {
-        //     Route::resource('/admin', AdminController::class);
-        // });
     });
-    Route::prefix('/teacher')->group(function () {
+    Route::name('teacher.')->prefix('/teacher')->group(function () {
         Route::group(['middleware' => ['role:teacher']], function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             })->name('dashboard');
-            // Route::resource('/admin', AdminController::class);
+            Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
+            Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
+            Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
         });
     });
-    Route::group(['middleware' => ['role:student']], function () {
-        Route::get('/dashboard-siswa', function () {
-            return view('siswa.dashboard');
+    Route::name('student.')->prefix('/student')->group(function () {
+        Route::group(['middleware' => ['role:student']], function () {
+            Route::get('/dashboard', function () {
+                return view('siswa.dashboard');
+            })->name('dashboard');
         });
     });
 });
 
 Route::resource('/materis', \App\Http\Controllers\MateriController::class);
-// Route::get('/', function () {
-//     return view('materis.index');
-// });
 
 Route::get('getCourse/{id}', function ($id) {
     $course = App\Models\Kelas::where('kelas_id', $id)->get();

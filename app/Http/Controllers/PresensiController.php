@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Presensi;
+use Illuminate\Http\Request;
 
 class PresensiController extends Controller
 {
-
     public function showByJadwalId($jadwalId)
     {
         $presensi = Presensi::where('jadwal_id', $jadwalId)->get();
@@ -19,22 +18,21 @@ class PresensiController extends Controller
     {
         $presensi = Presensi::where(['jadwal_id' => $jadwalId, 'user_id' => user()->id]);
 
-        if($presensi) {
+        if ($presensi) {
             $tgl = strtotime(now());
             $tgl = date('d-m-Y', $tgl);
-            
+
             $tglPresensi = strtotime($presensi->created_at);
             $tglPresensi = date('d-m-y', $tglPresensi);
 
-            if($tgl == $tglPresensi) {
+            if ($tgl == $tglPresensi) {
                 return redirect('presensi.index')->with(['message' => 'Anda sudah melakukan presensi']);
             }
         }
 
         $jadwal = Jadwal::find($jadwalId);
 
-        if(!$jadwal->buka)
-        {
+        if (! $jadwal->buka) {
             return redirect('presensi.index')->with(['message' => 'Presensi telah ditutup']);
         }
 
@@ -45,6 +43,4 @@ class PresensiController extends Controller
 
         return redirect('presensi.index')->with(['success' => 'Berhasil melakukan presensi']);
     }
-
-
 }

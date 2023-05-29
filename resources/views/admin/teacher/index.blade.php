@@ -6,12 +6,13 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('admin.create') }}" class="btn btn-md btn-success mb-3">Tambah Guru</a>
+                        <a href="{{ route('admin.teacher.create') }}" class="btn btn-md btn-success mb-3">Tambah Guru</a>
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">No</th>
+                                <th scope="col" style="width:5%">No</th>
                                 <th scope="col">Nama</th>
+                                <th scope="col" style="width:20%">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -19,6 +20,14 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $teacher->name }}</td>
+                                    <td class="text-center">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('admin.teacher.destroy', $teacher) }}" method="POST">
+                                            <a href="{{ route('admin.teacher.edit', $teacher) }}" class="btn btn-sm btn-primary">Ubah</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @empty
                                 <div class="alert alert-danger">

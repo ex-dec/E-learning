@@ -10,13 +10,16 @@ class Kelas extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
-    public function tugas(){
+    public function tugas()
+    {
         return $this->hasMany(Tugas::class, 'id', 'kelas_id');
     }
-    public function jadwal(){
+
+    public function jadwal()
+    {
         return $this->hasMany(Jadwal::class, 'id', 'kelas_id');
     }
 }
