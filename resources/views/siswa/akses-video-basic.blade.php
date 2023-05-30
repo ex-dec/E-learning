@@ -5,8 +5,7 @@
     <thead>
       <h3 class="font-weight-bolder text-dark">Basic</h3>
     </thead>
-    <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card" style="width: 20rem;">
   <div class="card-body">
     <h5 class="card-title"></h5>
     <p class="card-text">Perkenalan Bahasa Turkey</p>

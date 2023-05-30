@@ -2,21 +2,19 @@
 @section('content')
 
 <div class="container my-5">
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Card dengan Dropdown</h5>
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Pilihan
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">sesil</a>
-        <a class="dropdown-item" href="#">sesil 2</a>
-        <a class="dropdown-item" href="#">sesil 3</a>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title font-weight-bolder text-dark">Materi 1</h5>
+        <p class="card-text text-dark">Pengenalan Bahasa Turki</p>
+        <div class="col-md-12" style="font-size: 15px">
+          <div class="fa fa-download float-right"></div>
+          <div class="col-md-11" style="font-size: 15px">
+          <div class="far fa-eye float-right"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 
 @endsection

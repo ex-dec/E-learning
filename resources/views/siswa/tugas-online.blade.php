@@ -1,40 +1,17 @@
-@extends('siswa.layouts.navbar')
-@section('title', 'Dashboard')
+@extends('siswa.layouts.sidebar')
 @section('content')
- <!-- Topbar -->
- <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-<!-- Sidebar Toggle (Topbar) -->
-<button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-    <i class="fa fa-bars"></i>
-</button>
-
-    <!-- Topbar Navbar -->
-        <ul class="navbar-nav ml-auto">
-      <div class="topbar-divider d-none d-sm-block"></div>
-
-    <!-- Nav Item - User Information -->
-    <li class="nav-item dropdown no-arrow">
-        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Sesilia</span>
-            <img class="img-profile rounded-circle"
-                src="img/undraw_profile.svg">
-        </a>
-    </nav>
-    <!-- End of Topbar -->
-
-
-     <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-
-        <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="tugas-online-siswa" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Kelas
-  </a>
-
- 
-
-
+  <div class="container my-5">
+   <div class="row row-cols-1 row-cols-md-5 g-3">
+    <div class="col-md-6 col-12">
+      <div class="card">
+        <div class="card-body">
+         <h3 class="card-title font-weight-bolder text-dark">Basic</h3>
+         <div class="row pb-3">
+            <div class="col-md-5 card-text text-dark">Nama Guru</div>
+            <div class="col-md-7 card-text text-dark text-right"><a href="#" class="btn btn-primary">
+            <i class="fas fa-video"></i> Link</a></div>
+        </div>
+      </div> 
+    </div>
+</div>
 @endsection

@@ -19,10 +19,10 @@
          <div class="col-md-7 fas fa-video"style='font-size:14px'> Online</div>
          </div>
          <div class="row pb-3">
-         <div class="col-md-5 card-text text-dark text-center">
+         <div class="col-md-2 card-text text-dark text-center">
            <a href="#" class="btn btn-primary weight-100">Presensi</a>
         </div>
-            <div class="col-md-7 card-text text-dark text-right"><a href="#" class="btn btn-primary">
+            <div class="col-md-10 card-text text-dark text-right"><a href="#" class="btn btn-primary">
             <i class="fas fa-video"></i> Link</a></div>
         </div>
       </div> 
