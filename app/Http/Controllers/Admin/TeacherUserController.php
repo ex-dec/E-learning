@@ -4,13 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules;
 use Spatie\Permission\Models\Role;
-
 
 class TeacherUserController extends Controller
 {
@@ -36,7 +35,7 @@ class TeacherUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
@@ -81,12 +80,13 @@ class TeacherUserController extends Controller
         ]);
         $teacher = User::find($teacher)->first();
 
-        if (!$teacher) {
+        if (! $teacher) {
             return redirect()->route('admin.teacher.index')->with(['error' => 'Data tidak ditemukan!']);
         }
         $teacher->name = $request->name;
         $teacher->email = $request->email;
         $teacher->save();
+
         return redirect()->route('admin.teacher.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 

@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use PDO;
-use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -34,7 +33,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function getRedirectRoute()
+    public function getRedirectRoute()
     {
         if (Auth::user()->hasRole('admin')) {
             $path = '/admin/dashboard/';
@@ -43,6 +42,7 @@ class User extends Authenticatable
         } else {
             $path = '/student/dashboard/';
         }
+
         return $path;
     }
 

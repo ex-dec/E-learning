@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
-use App\Models\Material;
 use App\Models\Grade;
+use App\Models\Material;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -25,6 +25,7 @@ class MaterialController extends Controller
     public function create()
     {
         $grades = Grade::all();
+
         return view('teacher.material.create', compact('grades'));
     }
 
@@ -33,24 +34,20 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10',
+        $request->validate([
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
         ]);
         $file = $request->file('file');
-        // dd($file);
-        // $file->move(public_path('posts'), $file->hashName());
         $file->storeAs('public/posts', $file->hashName());
-        // dd($request);
-        //create Materi
         Material::create([
-            'file_url'  => $file->hashName(),
-            'nama'     => $request->title,
-            'kelas'     => $request->kelas,
-            'content'   => $request->content,
-            'link_video' =>$request->link_video
-            // 'content'   => $request->content,
+            'file_url' => $file->hashName(),
+            'title' => $request->title,
+            'grade_id' => $request->grade_id,
+            'content' => $request->content,
+            'link_video' => $request->link_video,
         ]);
+
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
@@ -67,7 +64,15 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        //
+        $material = Material::find($material)->first();
+        if (!$material) {
+            return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
+        }
+        $gradeSelected = Grade::find($material->grade_id);
+
+        $grades = Grade::all();
+
+        return view('teacher.material.edit', compact('material', 'grades', 'gradeSelected'));
     }
 
     /**
@@ -75,7 +80,22 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
+        ]);
+        $file = $request->file('file');
+        $file->storeAs('public/posts', $file->hashName());
+
+        $material->update([
+            'file_url' => $file->hashName(),
+            'nama' => $request->title,
+            'grade_id' => $request->grade_id,
+            'content' => $request->content,
+            'link_video' => $request->link_video,
+        ]);
+
+        return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -83,6 +103,12 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        //
+        $materials = Material::find($material)->first();
+        if (!$materials) {
+            return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
+        }
+        $material->delete();
+
+        return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

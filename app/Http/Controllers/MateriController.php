@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materi;
 use App\Models\Kelas;
+use App\Models\Materi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class MateriController extends Controller
-{    
+{
     /**
      * index
      *
@@ -19,13 +18,13 @@ class MateriController extends Controller
         //get materi
         $materis = Materi::paginate(5);
 
-        
         //render view with materi
         return view('materis.index', compact('materis'));
         // return view('materis.index', [
         //     'materis' => $materis
         // ]);
     }
+
     // /**
     //  * create
     //  *
@@ -34,8 +33,9 @@ class MateriController extends Controller
     public function create(Request $request)
     {
         $kelas = Kelas::all();
+
         return view('materis.create', compact('kelas'));
-    
+
     }
 
     // /**
@@ -48,8 +48,8 @@ class MateriController extends Controller
     {
         //validate form
         $this->validate($request, [
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10',
+            'title' => 'required|min:5',
+            'content' => 'required|min:10',
         ]);
         $file = $request->file('file');
         // dd($file);
@@ -58,11 +58,11 @@ class MateriController extends Controller
         // dd($request);
         //create Materi
         Materi::create([
-            'file_url'  => $file->hashName(),
-            'nama'     => $request->title,
-            'kelas'     => $request->kelas,
-            'content'   => $request->content,
-            'link_video' =>$request->link_video
+            'file_url' => $file->hashName(),
+            'nama' => $request->title,
+            'kelas' => $request->kelas,
+            'content' => $request->content,
+            'link_video' => $request->link_video,
             // 'content'   => $request->content,
         ]);
 
@@ -70,30 +70,31 @@ class MateriController extends Controller
         return redirect()->route('materis.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-        /**
+    /**
      * edit
      *
-     * @param  mixed $materi
+     * @param  mixed  $materi
      * @return void
      */
     public function edit(Materi $materi)
     {
         $materi = Materi::find($materi)->first();
         $kelas = Kelas::all();
+
         return view('materis.edit', [
-            'file_url'  => $materi->file_url,
+            'file_url' => $materi->file_url,
             'materi' => $materi,
             'kelas' => $kelas,
             'content' => $materi->content,
-            'link_video'=>$materi->link_video
+            'link_video' => $materi->link_video,
         ]);
     }
-    
+
     /**
      * update
      *
-     * @param  mixed $request
-     * @param  mixed $materi
+     * @param  mixed  $request
+     * @param  mixed  $materi
      * @return void
      */
     public function update(Request $request, Materi $materi)
@@ -106,14 +107,13 @@ class MateriController extends Controller
         $file = $request->file('file');
         $file->storeAs('public/posts', $file->hashName());
 
-
         //check if image is uploaded
         $materi->update([
-            'file_url'  => $file->hashName(),
-            'nama'     => $request->title,
-            'kelas'     => $request->kelas,
+            'file_url' => $file->hashName(),
+            'nama' => $request->title,
+            'kelas' => $request->kelas,
             'content' => $request->content,
-            'link_video'=>$request->link_video
+            'link_video' => $request->link_video,
         ]);
 
         //redirect to index
@@ -128,5 +128,4 @@ class MateriController extends Controller
         //redirect to index
         return redirect()->route('materis.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
-
 }

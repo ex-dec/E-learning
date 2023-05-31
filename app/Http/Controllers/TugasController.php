@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tugas;
 use App\Models\Kelas;
+use App\Models\Tugas;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class TugasController extends Controller
 {
@@ -21,12 +20,13 @@ class TugasController extends Controller
 
         //render view with tugas
         return view('tugas.index', [
-            'tugas' => $tugas
+            'tugas' => $tugas,
         ]);
         // return view('tugas.index', [
         //     'tugas' => $tugas
         // ]);
     }
+
     // /**
     //  * create
     //  *
@@ -35,6 +35,7 @@ class TugasController extends Controller
     public function create(Request $request)
     {
         $kelas = Kelas::all();
+
         return view('tugas.create', compact('kelas'));
 
     }
@@ -50,8 +51,8 @@ class TugasController extends Controller
         // dd($request);
         //validate form
         $this->validate($request, [
-            'title'     => 'required',
-            'content'   => 'required',
+            'title' => 'required',
+            'content' => 'required',
         ]);
         // $file = $request->file('file');
         // dd($file);
@@ -60,11 +61,11 @@ class TugasController extends Controller
         // dd($request);
         //create Tugas
         Tugas::create([
-            'tugas_url'  => $request->tugas_url,
-            'nama'     => $request->title,
-            'deadline'     => $request->deadline,
-            'kelas_id'     => $request->kelas,
-            'content'   => $request->content,
+            'tugas_url' => $request->tugas_url,
+            'nama' => $request->title,
+            'deadline' => $request->deadline,
+            'kelas_id' => $request->kelas,
+            'content' => $request->content,
             // 'content'   => $request->content,
         ]);
 
@@ -72,10 +73,10 @@ class TugasController extends Controller
         return redirect()->route('tugas.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
-        /**
+    /**
      * edit
      *
-     * @param  mixed $tugas
+     * @param  mixed  $tugas
      * @return void
      */
     public function edit(Tugas $tugas)
@@ -92,8 +93,8 @@ class TugasController extends Controller
     /**
      * update
      *
-     * @param  mixed $request
-     * @param  mixed $tugas
+     * @param  mixed  $request
+     * @param  mixed  $tugas
      * @return void
      */
     public function update(Request $request, Tugas $tugas)
@@ -106,8 +107,8 @@ class TugasController extends Controller
 
         //check if image is uploaded
         $tugas->update([
-            'nama'     => $request->title,
-            'kelas'     => $request->kelas,
+            'nama' => $request->title,
+            'kelas' => $request->kelas,
         ]);
 
         //redirect to index
@@ -123,5 +124,4 @@ class TugasController extends Controller
         //redirect to index
         return redirect()->route('tugas.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
-
 }

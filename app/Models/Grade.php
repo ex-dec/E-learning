@@ -24,4 +24,9 @@ class Grade extends Model
     {
         return $this->hasMany(Schedule::class, 'id', 'grade_id');
     }
+
+    public function material()
+    {
+        return $this->hasMany(Material::class, 'id', 'grade_id');
+    }
 }
