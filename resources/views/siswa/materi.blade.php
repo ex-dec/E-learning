@@ -33,7 +33,7 @@
  <div class="col-md-4 col-sm-12 mb-3">
      <div class="card">
          <div class="card-body">
-             <div class="card-title"><h5>Basic</h5></div>
+             <div class="card-title   font-weight-bolder text-dark"><h5>Basic</h5></div>
              Eccy Abla
 
              Senin, 19:00 - 22:00
@@ -49,14 +49,14 @@
      <div class="card">
 
          <div class="card-body">
-             <div class="card-title"><h4>Intermediate</h4></div>
+             <div class="card-title font-weight-bolder text-dark"><h4>Intermediate</h4></div>
              Eccy Abla
 
              Rabu, 19:00 - 22:00
          </div>
 
          <div class="card-footer">
-         <a href="akses-kelas-intermediate-siswa" class="btn btn-primary">Akses Kelas</a>
+         <a href="akses-kelas-intermediate-siswa" class="col-md-5 btn btn-primary">Akses Kelas</a>
          </div>
      </div>
  </div>
@@ -65,7 +65,7 @@
      <div class="card">
 
          <div class="card-body">
-             <div class="card-title"><h4>Advance</h4></div>
+             <div class="card-title  font-weight-bolder text-dark"><h4>Advance</h4></div>
             Eccy Abla
 
             Jumat, 19:00 - 22:00
