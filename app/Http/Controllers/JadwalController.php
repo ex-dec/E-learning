@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use App\Models\Kelas;
-
-
+use Illuminate\Http\Request;
 
 class JadwalController extends Controller
 {
@@ -29,7 +27,7 @@ class JadwalController extends Controller
         $jadwal = Jadwal::all();
         $kelas = Kelas::all();
 
-        return view('jadwal.create', compact('jadwal','kelas'));
+        return view('jadwal.create', compact('jadwal', 'kelas'));
     }
 
     public function store(Request $request)
@@ -40,9 +38,8 @@ class JadwalController extends Controller
             'jam_jadwal' => 'required',
             'tanggal_jadwal' => 'required',
             'kelas_id' => 'required',
-            'link' => 'required'
+            'link' => 'required',
         ]);
-
 
         $tgl = strtotime($request->tanggal_jadwal);
         $hari = date('l', $tgl);
@@ -64,7 +61,7 @@ class JadwalController extends Controller
         $jadwal = Jadwal::find($jadwal)->first();
         $kelas = Kelas::all();
 
-        return view('jadwal.edit', compact('jadwal','kelas'));
+        return view('jadwal.edit', compact('jadwal', 'kelas'));
     }
 
     public function update(Request $request, Jadwal $jadwal)

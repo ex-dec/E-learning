@@ -15,6 +15,7 @@ class ScheduleController extends Controller
     public function index()
     {
         $schedules = Schedule::all();
+
         return view('teacher.schedule.index', compact('schedules'));
     }
 
@@ -38,7 +39,7 @@ class ScheduleController extends Controller
             'jam_jadwal' => 'required',
             'tanggal_jadwal' => 'required',
             'grade_id' => 'required',
-            'link' => 'required'
+            'link' => 'required',
         ]);
 
         $tgl = strtotime($request->tanggal_jadwal);
@@ -93,7 +94,7 @@ class ScheduleController extends Controller
 
         $schedule = Schedule::find($schedule)->first();
 
-        if (!$schedule) {
+        if (! $schedule) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
         }
 
@@ -115,7 +116,7 @@ class ScheduleController extends Controller
     {
         $schedules = Schedule::find($schedule);
 
-        if (!$schedules) {
+        if (! $schedules) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
         }
 
@@ -126,21 +127,21 @@ class ScheduleController extends Controller
 
     public function close(Schedule $schedule)
     {
-        $schedule = Schedule::find($schedule);
+        $schedule = Schedule::find($schedule)->first();
 
         $schedule->buka = false;
         $schedule->save();
 
-        return redirect('teacher.schedule.index')->with(['success' => 'Presensi ditutup']);
+        return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi ditutup']);
     }
 
     public function open(Schedule $schedule)
     {
-        $schedule = Schedule::find($schedule);
+        $schedule = Schedule::find($schedule)->first();
 
         $schedule->buka = true;
         $schedule->save();
 
-        return redirect('teacher.schedule.index')->with(['success' => 'Presensi dibuka']);
+        return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi dibuka']);
     }
 }

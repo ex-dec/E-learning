@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('tugas_url');
-            $table->dateTime('deadline')->nullable();
+            $table->string('title');
+            $table->string('task_url');
+            $table->dateTime('dateline')->nullable();
             $table->unsignedBigInteger('grade_id');
             $table->string('content');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');

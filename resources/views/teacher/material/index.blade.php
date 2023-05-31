@@ -6,40 +6,38 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('materis.create') }}" class="btn btn-md btn-success mb-3">TAMBAH MATERI</a>
+                        <a href="{{ route('teacher.material.create') }}" class="btn btn-md btn-success mb-3">Tambah Materi</a>
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th scope="col">NO</th>
+                                <th scope="col">No</th>
                                 <th scope="col">Nama Materi</th>
                                 <th scope="col">Kelas</th>
                                 <th scope="col">Keterangan</th>
                                 <th scope="col">File </th>
-                                <th scope="col">LINK</th>
-                                <th scope="col">AKSI</th>
+                                <th scope="col">Link</th>
+                                <th scope="col">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse ($materis as $materi)
+                            @forelse ($materials as $material)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $materi->nama }}</td>
-                                    <td>{{ $materi->kelas }}</td>
-                                    <td>{{ $materi->content }}</td>
+                                    <td>{{ $material->title }}</td>
+                                    <td>{{ $material->grade->name }}</td>
+                                    <td>{{ $material->content }}</td>
                                     <td>
-                                        <a href={{ asset('storage/posts/' . $materi->file_url) }} class="btn btn-sm btn-primary">Open</a>
+                                        <a href={{ asset('storage/posts/' . $material->file_url) }} class="btn btn-sm btn-primary">Open</a>
                                     </td>
                                     <td>
-                                        <a href={{ $materi->link_video}} class="btn btn-sm btn-primary">Open</a>
+                                        <a href={{ $material->link_video}} class="btn btn-sm btn-primary">Open</a>
                                     </td>
-                                    
-                                   
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('materis.destroy', $materi->id) }}" method="POST">
-                                            <a href="{{ route('materis.edit', $materi->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                    <td class="text-center" style="width: 10%">
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('teacher.material.destroy', $material) }}" method="POST">
+                                            <a href="{{ route('teacher.material.edit', $material) }}" class="btn btn-sm btn-primary">Edit</a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -49,8 +47,8 @@
                                 </div>
                             @endforelse
                             </tbody>
-                        </table>  
-                        {{ $materis->links() }}
+                        </table>
+                        {{ $materials->links() }}
                     </div>
                 </div>
             </div>
@@ -62,13 +60,13 @@
     <script>
         //message with toastr
         @if(session()->has('success'))
-        
-            toastr.success('{{ session('success') }}', 'BERHASIL!'); 
+
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
 
         @elseif(session()->has('error'))
 
-            toastr.error('{{ session('error') }}', 'GAGAL!'); 
-            
+            toastr.error('{{ session('error') }}', 'GAGAL!');
+
         @endif
-    </script> 
+    </script>
 @endsection

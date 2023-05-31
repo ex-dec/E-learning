@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Materi extends Model
 {
     use HasFactory;
-    protected $table = "materi";
+
+    protected $table = 'materi';
+
     public $timestamps = false;
-    protected $fillable =[
+
+    protected $fillable = [
         'nama',
         'file_url',
         'kelas',
         'content',
-        'link_video'
+        'link_video',
     ];
 }

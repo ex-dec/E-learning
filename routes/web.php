@@ -1,15 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Admin\TeacherUserController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TugasController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PresensiController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TugasController;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +34,6 @@ Route::get('/dashboard-siswa', function () {
     return view('siswa.dashboard');
 });
 
-
 Route::get('/tugas-user', [TugasController::class, 'index']);
 
 Route::get('/materi-siswa', function () {
@@ -63,7 +59,6 @@ Route::get('/akses-kelas-intermediate-siswa', function () {
 Route::get('/akses-kelas-advance-siswa', function () {
     return view('siswa.akses-kelas-advance');
 });
-
 
 Route::get('/tugas-online-siswa', function () {
     return view('siswa.tugas-online');
@@ -93,6 +88,8 @@ Route::middleware('auth')->group(function () {
                 return view('dashboard');
             })->name('dashboard');
             Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
+            Route::get('/schedule/open/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'open'])->name('schedule.open');
+            Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])->name('schedule.close');
             Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
             Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
         });
@@ -110,6 +107,7 @@ Route::resource('/materis', \App\Http\Controllers\MateriController::class);
 
 Route::get('getCourse/{id}', function ($id) {
     $course = App\Models\Kelas::where('kelas_id', $id)->get();
+
     return response()->json($course);
 });
 Route::resource('/tugas', \App\Http\Controllers\TugasController::class);
@@ -119,7 +117,6 @@ Route::get('/jadwal/open/{$id}', [JadwalController::class, 'open'])->name('buka'
 Route::post('/jadwal/simpan', [JadwalController::class, 'store'])->name('jadwal.store');
 Route::post('/jadwal/update/{$id}', [JadwalController::class, 'update'])->name('jadwal.update');
 
-
 Route::prefix('presensi')->group(function () {
     Route::get('/get/{jadwalId}', [PresensiController::class, 'showByJadwalId']);
     Route::get('/{jadwalId}', [PresensiController::class, 'store']);
@@ -127,5 +124,4 @@ Route::prefix('presensi')->group(function () {
 // Route::get('/', function () {
 //     return view('tugas.index');
 
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
