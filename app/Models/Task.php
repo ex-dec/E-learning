@@ -14,10 +14,10 @@ class Task extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'title',
         'task_url',
         'dateline',
         'grade_id',
-        'title',
         'content',
     ];
 

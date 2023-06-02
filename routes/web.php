@@ -75,7 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::name('admin.')->prefix('/admin')->group(function () {
-        Route::group(['middleware' => ['role:admin']], function () {
+        Route::group(['middleware' => ['role:admin,web']], function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             })->name('dashboard');
@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
         });
     });
     Route::name('teacher.')->prefix('/teacher')->group(function () {
-        Route::group(['middleware' => ['role:teacher']], function () {
+        Route::group(['middleware' => ['role:teacher,web']], function () {
             Route::get('/dashboard', function () {
                 return view('dashboard');
             })->name('dashboard');
@@ -95,10 +95,25 @@ Route::middleware('auth')->group(function () {
         });
     });
     Route::name('student.')->prefix('/student')->group(function () {
-        Route::group(['middleware' => ['role:student']], function () {
-            Route::get('/dashboard', function () {
-                return view('siswa.dashboard');
-            })->name('dashboard');
+        Route::group(['middleware' => ['role:student,web']], function () {
+            Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+            Route::name('material')->prefix('/material')->group(function () {
+                Route::get('', [App\Http\Controllers\Student\MaterialController::class, 'index'])->name('');
+                Route::name('.basic.')->prefix('/basic')->group(function () {
+                });
+                Route::name('.intermediate.')->prefix('/intermediate')->group(function () {
+                });
+                Route::name('.advance.')->prefix('/advance')->group(function () {
+                });
+            });
+            Route::name('course')->prefix('/course')->group(function () {
+                Route::name('.basic')->prefix('/basic')->group(function () {
+                    Route::get('', [App\Http\Controllers\Student\CourseController::class, 'basicDashboard'])->name('');
+                });
+            });
+            Route::name('schedule')->prefix('/schedule')->group(function () {
+                Route::get('', [App\Http\Controllers\Student\ScheduleController::class, 'index'])->name('');
+            });
         });
     });
 });
@@ -106,7 +121,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('/materis', \App\Http\Controllers\MateriController::class);
 
 Route::get('getCourse/{id}', function ($id) {
-    $course = App\Models\Kelas::where('kelas_id', $id)->get();
+    $course = App\Models\Grade::where('grade_id', $id)->get();
 
     return response()->json($course);
 });
@@ -124,4 +139,4 @@ Route::prefix('presensi')->group(function () {
 // Route::get('/', function () {
 //     return view('tugas.index');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

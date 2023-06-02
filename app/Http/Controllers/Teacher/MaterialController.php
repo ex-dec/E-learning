@@ -65,7 +65,7 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         $material = Material::find($material)->first();
-        if (!$material) {
+        if (! $material) {
             return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
         }
         $gradeSelected = Grade::find($material->grade_id);
@@ -104,7 +104,7 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         $materials = Material::find($material)->first();
-        if (!$materials) {
+        if (! $materials) {
             return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
         }
         $material->delete();

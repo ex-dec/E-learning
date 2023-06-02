@@ -44,7 +44,7 @@
     </div>
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
         //message with toastr
         @if(session()->has('success'))
@@ -57,4 +57,4 @@
 
         @endif
     </script>
-@endsection
+@endsection --}}

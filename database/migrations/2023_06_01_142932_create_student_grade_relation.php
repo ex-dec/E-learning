@@ -11,16 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schedules', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->time('time_start');
-            $table->time('time_end');
-            $table->string('day_schedule');
-            $table->boolean('presence')->default(false);
-            $table->string('link')->nullable();
+        Schema::create('user_has_grade', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
-            $table->timestamps();
         });
     }
 
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schedules');
+        Schema::dropIfExists('user_has_grade');
     }
 };

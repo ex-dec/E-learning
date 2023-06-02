@@ -14,13 +14,13 @@ class GradeSeeder extends Seeder
     {
         // membuat kelas
         $basic = Grade::create([
-            'name' => 'basic',
+            'name' => 'Basic',
         ]);
         $intermediate = Grade::create([
-            'name' => 'intermediate',
+            'name' => 'Intermediate',
         ]);
         $advance = Grade::create([
-            'name' => 'advance',
+            'name' => 'Advance',
         ]);
     }
 }

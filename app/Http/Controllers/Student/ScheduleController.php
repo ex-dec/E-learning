@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use App\Models\Schedule;
+use App\Models\UserHasGrade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ScheduleController extends Controller
 {
@@ -13,7 +15,15 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $userId = Auth::user()->id;
+        $grade = UserHasGrade::where('user_id', $userId)->first();
+        $schedules = Schedule::where('grade_id', $grade->grade_id)->get();
+        if ($grade->grade_id == '1') {
+            $schedules = Schedule::where('grade_id', $grade->grade_id)->get();
+        } else if ($grade->grade_id == '2') {
+            $schedules = Schedule::where('grade_id', '<=', $grade->grade_id)->get();
+        }
+        return view('student.schedule.index', compact('schedules'));
     }
 
     /**

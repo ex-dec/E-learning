@@ -12,10 +12,10 @@ class Schedule extends Model
     protected $table = 'schedules';
 
     protected $fillable = [
-        'nama',
-        'jam_jadwal',
-        'hari_jadwal',
-        'tanggal_jadwal',
+        'title',
+        'time_start',
+        'time_end',
+        'day_schedule',
         'link',
         'grade_id',
     ];
@@ -28,5 +28,10 @@ class Schedule extends Model
     public function presence()
     {
         return $this->hasMany(Presence::class, 'id', 'schedule_id');
+    }
+
+    public function getUserGrade()
+    {
+
     }
 }

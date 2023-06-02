@@ -16,9 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('task_url');
             $table->dateTime('dateline')->nullable();
-            $table->unsignedBigInteger('grade_id');
+            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
             $table->string('content');
-            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
         });
     }
 
