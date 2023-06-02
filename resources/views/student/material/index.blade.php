@@ -15,7 +15,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <a href="/akses-kelas-basic-siswa" class="btn btn-primary">Akses Kelas</a>
+                            <a href="{{ route('student.course.basic')}}" class="btn btn-primary">Akses Kelas</a>
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="card-footer">
-                            <a href="/akses-kelas-intermediate-siswa" class="btn btn-primary">Akses Kelas</a>
+                            <a href="{{ route('student.course.intermediate')}}" class="btn btn-primary">Akses Kelas</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a href="/akses-kelas-advance-siswa" class="btn btn-primary">Akses Kelas</a>
+                                <a href="{{ route('student.course.advance')}}" class="btn btn-primary">Akses Kelas</a>
                             </div>
                         </div>
                     </div>

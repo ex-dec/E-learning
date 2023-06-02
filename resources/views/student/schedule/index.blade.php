@@ -18,11 +18,11 @@
                             @endswitch
                             text-light font-weight-bold
                         ">
-                            {{ $schedule->day_schedule }}
+                            {{ ucfirst($schedule->day_schedule) }}
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><i
-                                    class="bi bi-file-text-fill text-dark"></i>{{ $schedule->grade->name }}</h5>
+                                    class="bi bi-file-text-fill text-dark"></i>{{ $schedule->title }}</h5>
                             <div class="row pb-3">
                                 <div class="col-md-5 fas fa-video"style='font-size:14px text-dark'> Online</div>
                                 <div class="col-md-7 fas fa-clock"style='font-size:14px text-dark'>

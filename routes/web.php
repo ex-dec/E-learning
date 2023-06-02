@@ -23,6 +23,63 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::name('admin.')->prefix('/admin')->group(function () {
+        Route::group(['middleware' => ['role:admin,web']], function () {
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+            Route::resource('/teacher', TeacherUserController::class);
+        });
+    });
+    Route::name('teacher.')->prefix('/teacher')->group(function () {
+        Route::group(['middleware' => ['role:teacher,web']], function () {
+            Route::get('/dashboard', function () {
+                return view('dashboard');
+            })->name('dashboard');
+            Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
+            Route::get('/schedule/open/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'open'])->name('schedule.open');
+            Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])->name('schedule.close');
+            Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
+            Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
+        });
+    });
+    Route::name('student.')->prefix('/student')->group(function () {
+        Route::group(['middleware' => ['role:student,web']], function () {
+            Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+            Route::name('material')->prefix('/material')->group(function () {
+                Route::get('', [App\Http\Controllers\Student\MaterialController::class, 'index'])->name('');
+                Route::name('.basic.')->prefix('/basic')->group(function () {
+                });
+                Route::name('.intermediate.')->prefix('/intermediate')->group(function () {
+                });
+                Route::name('.advance.')->prefix('/advance')->group(function () {
+                });
+            });
+            Route::name('course')->prefix('/course')->group(function () {
+                Route::name('.basic')->prefix('/basic')->group(function () {
+                    Route::get('', [App\Http\Controllers\Student\CourseController::class, 'basicDashboard'])->name('');
+                    Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'basicMaterial'])->name('.material');
+                });
+                Route::name('.intermediate')->prefix('/intermediate')->group(function () {
+                    Route::get('', [App\Http\Controllers\Student\CourseController::class, 'intermediateDashboard'])->name('');
+                    Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'intermediateMaterial'])->name('.material');
+                });
+                Route::name('.advance')->prefix('/advance')->group(function () {
+                    Route::get('', [App\Http\Controllers\Student\CourseController::class, 'advanceDashboard'])->name('');
+                    Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'advanceMaterial'])->name('.material');
+                });
+            });
+            Route::name('schedule')->prefix('/schedule')->group(function () {
+                Route::get('', [App\Http\Controllers\Student\ScheduleController::class, 'index'])->name('');
+            });
+        });
+    });
+});
+
 Route::get('/materi-user', function () {
     return view('user.materi');
 });
@@ -68,69 +125,13 @@ Route::get('/materi-detail-siswa', function () {
     return view('siswa.materi-detail');
 });
 
-// ->middleware(['auth', 'verified'])->
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::name('admin.')->prefix('/admin')->group(function () {
-        Route::group(['middleware' => ['role:admin,web']], function () {
-            Route::get('/dashboard', function () {
-                return view('dashboard');
-            })->name('dashboard');
-            Route::resource('/teacher', TeacherUserController::class);
-        });
-    });
-    Route::name('teacher.')->prefix('/teacher')->group(function () {
-        Route::group(['middleware' => ['role:teacher,web']], function () {
-            Route::get('/dashboard', function () {
-                return view('dashboard');
-            })->name('dashboard');
-            Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
-            Route::get('/schedule/open/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'open'])->name('schedule.open');
-            Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])->name('schedule.close');
-            Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
-            Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
-        });
-    });
-    Route::name('student.')->prefix('/student')->group(function () {
-        Route::group(['middleware' => ['role:student,web']], function () {
-            Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
-            Route::name('material')->prefix('/material')->group(function () {
-                Route::get('', [App\Http\Controllers\Student\MaterialController::class, 'index'])->name('');
-                Route::name('.basic.')->prefix('/basic')->group(function () {
-                });
-                Route::name('.intermediate.')->prefix('/intermediate')->group(function () {
-                });
-                Route::name('.advance.')->prefix('/advance')->group(function () {
-                });
-            });
-            Route::name('course')->prefix('/course')->group(function () {
-                Route::name('.basic')->prefix('/basic')->group(function () {
-                    Route::get('', [App\Http\Controllers\Student\CourseController::class, 'basicDashboard'])->name('');
-                });
-            });
-            Route::name('schedule')->prefix('/schedule')->group(function () {
-                Route::get('', [App\Http\Controllers\Student\ScheduleController::class, 'index'])->name('');
-            });
-        });
-    });
-});
-
-Route::resource('/materis', \App\Http\Controllers\MateriController::class);
 
 Route::get('getCourse/{id}', function ($id) {
     $course = App\Models\Grade::where('grade_id', $id)->get();
 
     return response()->json($course);
 });
-Route::resource('/tugas', \App\Http\Controllers\TugasController::class);
-Route::resource('/jadwal', \App\Http\Controllers\JadwalController::class);
-Route::get('/jadwal/close/{$id}', [JadwalController::class, 'close'])->name('tutup');
-Route::get('/jadwal/open/{$id}', [JadwalController::class, 'open'])->name('buka');
-Route::post('/jadwal/simpan', [JadwalController::class, 'store'])->name('jadwal.store');
-Route::post('/jadwal/update/{$id}', [JadwalController::class, 'update'])->name('jadwal.update');
 
 Route::prefix('presensi')->group(function () {
     Route::get('/get/{jadwalId}', [PresensiController::class, 'showByJadwalId']);
