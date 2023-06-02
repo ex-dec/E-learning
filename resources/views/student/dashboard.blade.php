@@ -7,37 +7,44 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-pattern">
-                        <div class="card-body">
-                            <div class="float-right">
-                                <i class="fa fa-archive text-primary h4 ml-3"></i>
+                    <a href="{{ route('student.material') }}">
+                        <div class="card bg-pattern">
+                            <div class="card-body">
+                                <div class="float-right">
+                                    <i class="fa fa-archive text-primary h4 ml-3"></i>
+                                </div>
+                                <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
+                                    Materi</div>
                             </div>
-                            <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
-                                Materi</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-pattern">
-                        <div class="card-body">
-                            <div class="float-right">
-                                <i class="fa fa-th text-primary h4 ml-3"></i>
+                    <a href="{{ route('student.schedule') }}">
+                        <div class="card bg-pattern">
+                            <div class="card-body">
+                                <div class="float-right">
+                                    <i class="fa fa-th text-primary h4 ml-3"></i>
+                                </div>
+                                <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
+                                    Jadwal</div>
                             </div>
-                            <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
-                                Jadwal</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-pattern">
-                        <div class="card-body">
-                            <div class="float-right">
-                                <i class="fa fa-file text-primary h4 ml-3"></i>
+                    <a href="{{ route('student.material') }}">
+                        <div class="card bg-pattern">
+                            <div class="card-body">
+                                <div class="float-right">
+                                    <i class="fa fa-file text-primary h4 ml-3"></i>
+                                </div>
+                                <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
+                                    Tugas
+                                </div>
                             </div>
-                            <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
-                                Tugas</div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-xl-3 col-md-6">
                     <div class="card bg-pattern">
@@ -52,7 +59,7 @@
                 </div>
 
                 <!-- Custom fonts for this template-->
-                <link href="../assets/css/bootstrap.dashboard.min.css" rel="stylesheet" type="text/css">
+                {{-- <link href="../assets/css/bootstrap.dashboard.min.css" rel="stylesheet" type="text/css">
                 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
                 <div class="page-content container note-has-grid">
@@ -275,7 +282,7 @@
                             </div>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -18,11 +18,6 @@ class ScheduleController extends Controller
         $userId = Auth::user()->id;
         $grade = UserHasGrade::where('user_id', $userId)->first();
         $schedules = Schedule::where('grade_id', $grade->grade_id)->get();
-        if ($grade->grade_id == '1') {
-            $schedules = Schedule::where('grade_id', $grade->grade_id)->get();
-        } else if ($grade->grade_id == '2') {
-            $schedules = Schedule::where('grade_id', '<=', $grade->grade_id)->get();
-        }
         return view('student.schedule.index', compact('schedules'));
     }
 

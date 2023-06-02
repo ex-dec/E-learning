@@ -5,14 +5,14 @@
     <div class="col-md-6 col-12">
       <div class="card">
         <div class="card-body">
-         <h3 class="card-title font-weight-bolder text-dark">Basic</h3>
+         <h3 class="card-title font-weight-bolder text-dark">Intermediate</h3>
          <div class="row pb-3">
             <div class="col-md-5 card-text text-dark">Nama Guru</div>
             <div class="col-md-7 card-text text-dark">: Eccy Abla</div>
          </div>
          <div class="row pb-3">
             <div class="col-md-5 card-text text-dark">Jadwal</div>
-            <div class="col-md-7 fas fa-calendar-alt"style='font-size:14px'> Senin 19:00 - 22:00</div>
+            <div class="col-md-7 fas fa-calendar-alt"style='font-size:14px'> {{ $schedules->day_schedule}} {{ $schedules->time_start}} - {{ $schedules->time_end}}</div>
          </div>
          <div class="row pb-4">
             <div class="col-md-5 card-text text-dark"></div>
@@ -20,9 +20,9 @@
          </div>
          <div class="row pb-3">
          <div class="col-md-2 card-text text-dark text-center">
-           <a href="#" class="btn btn-primary weight-100">Presensi</a>
+           <a href="#" class="btn btn-primary weight-100" style="pointer-events: none;">Presensi</a>
         </div>
-            <div class="col-md-10 card-text text-dark text-right"><a href="#" class="btn btn-primary">
+            <div class="col-md-10 card-text text-dark text-right"><a href="{{ $schedules->link}}" class="btn btn-primary">
             <i class="fas fa-video"></i> Link</a></div>
         </div>
       </div>
