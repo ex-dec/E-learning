@@ -31,15 +31,25 @@ class UserSeeder extends Seeder
             'password' => bcrypt('adminguru'),
         ]);
         $guru->assignRole('teacher');
-        $siswa = User::create([
+        $siswa1 = User::create([
             'name' => 'admin siswa',
             'email' => 'adminsiswa@admin.com',
             'password' => bcrypt('adminsiswa'),
         ]);
-        $siswa->assignRole('student');
+        $siswa1->assignRole('student');
         UserHasGrade::create([
-            'user_id' => $siswa->id,
+            'user_id' => $siswa1->id,
             'grade_id' => '1',
+        ]);
+        $siswa2 = User::create([
+            'name' => 'admin siswa',
+            'email' => 'adminsiswa2@admin.com',
+            'password' => bcrypt('adminsiswa'),
+        ]);
+        $siswa2->assignRole('student');
+        UserHasGrade::create([
+            'user_id' => $siswa2->id,
+            'grade_id' => '2',
         ]);
     }
 }
