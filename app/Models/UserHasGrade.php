@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Presensi extends Model
+class UserHasGrade extends Model
 {
     use HasFactory;
 
-    protected $table = 'presensi';
+    protected $table = 'user_has_grade';
 
     protected $fillable = [
-        'jadwal_id',
         'user_id',
+        'grade_id'
     ];
+
+    public $timestamps = false;
 }

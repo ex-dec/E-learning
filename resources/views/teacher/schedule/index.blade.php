@@ -14,7 +14,7 @@
                                     <th scope="col">Nama Jadwal</th>
                                     <th scope="col">Kelas</th>
                                     <th scope="col">Hari</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Jam</th>
                                     <th scope="col">Presensi</th>
                                     <th scope="col">Status Presensi</th>
                                     <th scope="col">Aksi</th>
@@ -25,25 +25,28 @@
                                 @forelse ($schedules as $schedule)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $schedule->nama }}</td>
+                                        <td>{{ $schedule->title }}</td>
                                         <td>{{ $schedule->grade->name }}</td>
-                                        <td>{{ $schedule->hari_jadwal }}</td>
-                                        <td>{{ $schedule->tanggal_jadwal }}</td>
+                                        <td>{{ $schedule->day_schedule }}</td>
+                                        <td>{{ $schedule->time_start }} - {{ $schedule->time_end }}</td>
                                         <td>
-                                            <a href={{ route('teacher.schedule.open', $schedule) }} class="btn btn-sm btn-primary">Buka</a>
-                                            <a href={{ route('teacher.schedule.close', $schedule) }} class="btn btn-sm btn-primary">Tutup</a>
+                                            <a href={{ route('teacher.schedule.open', $schedule) }}
+                                                class="btn btn-sm btn-primary">Buka</a>
+                                            <a href={{ route('teacher.schedule.close', $schedule) }}
+                                                class="btn btn-sm btn-primary">Tutup</a>
                                         </td>
                                         <td>
-                                            @if ($schedule->buka)
-                                            Buka
+                                            @if ($schedule->presence)
+                                                Buka
                                             @else
-                                            Tutup
+                                                Tutup
                                             @endif
                                         </td>
 
                                         <td>{{ $schedule->aksi_jadwal }}
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('teacher.schedule.destroy', $schedule->id) }}" method="POST">
+                                                action="{{ route('teacher.schedule.destroy', $schedule->id) }}"
+                                                method="POST">
                                                 <a href="{{ route('teacher.schedule.edit', $schedule->id) }}"
                                                     class="btn btn-sm btn-primary">Edit</a>
                                                 @csrf
@@ -52,7 +55,8 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <a href="{{ $schedule->link}}" class="btn btn-sm btn-danger" target="_blank">Link</a>
+                                            <a href="{{ $schedule->link }}" class="btn btn-sm btn-danger"
+                                                target="_blank">Link</a>
                                         </td>
                                     </tr>
                                 @empty
@@ -69,17 +73,12 @@
     </div>
 @endsection
 
-{{-- @section('js')
+@section('js')
     <script>
-        //message with toastr
         @if (session()->has('success'))
-
-            toastr.success('{{ session('
-                    success ') }}', 'BERHASIL!');
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
         @elseif (session()->has('error'))
-
-            toastr.error('{{ session('
-                    error ') }}', 'GAGAL!');
+            toastr.error('{{ session('error') }}', 'GAGAL!');
         @endif
     </script>
-@endsection --}}
+@endsection

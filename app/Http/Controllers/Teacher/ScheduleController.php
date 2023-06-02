@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Teacher\ScheduleRequest;
 use App\Models\Grade;
 use App\Models\Schedule;
-use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $schedules = Schedule::all();
@@ -32,24 +29,13 @@ class ScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ScheduleRequest $request)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jam_jadwal' => 'required',
-            'tanggal_jadwal' => 'required',
-            'grade_id' => 'required',
-            'link' => 'required',
-        ]);
-
-        $tgl = strtotime($request->tanggal_jadwal);
-        $hari = date('l', $tgl);
-
         Schedule::create([
-            'nama' => $request->nama,
-            'jam_jadwal' => $request->jam_jadwal,
-            'hari_jadwal' => $hari,
-            'tanggal_jadwal' => $request->tanggal_jadwal,
+            'title' => $request->title,
+            'time_start' => $request->time_start,
+            'time_end' => $request->time_end,
+            'day_schedule' => $request->day_schedule,
             'link' => $request->link,
             'grade_id' => $request->grade_id,
         ]);
@@ -79,29 +65,18 @@ class ScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(ScheduleRequest $request, Schedule $schedule)
     {
-        $request->validate([
-            'nama' => 'required',
-            'jam_jadwal' => 'required',
-            'tanggal_jadwal' => 'required',
-            'link' => 'required',
-            'grade_id' => 'required',
-        ]);
+        $schedules = Schedule::find($schedule)->first();
 
-        $tgl = strtotime($request->tanggal_jadwal);
-        $hari = date('l', $tgl);
-
-        $schedule = Schedule::find($schedule)->first();
-
-        if (! $schedule) {
+        if (! $schedules) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
         }
 
-        $schedule->nama = $request->nama;
-        $schedule->jam_jadwal = $request->jam_jadwal;
-        $schedule->hari_jadwal = $hari;
-        $schedule->tanggal_jadwal = $request->tanggal_jadwal;
+        $schedule->title = $request->title;
+        $schedule->time_start = $request->time_start;
+        $schedule->time_end = $request->time_end;
+        $schedule->day_schedule = $request->day_schedule;
         $schedule->link = $request->link;
         $schedule->grade_id = $request->grade_id;
         $schedule->save();
@@ -114,7 +89,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        $schedules = Schedule::find($schedule);
+        $schedules = Schedule::find($schedule)->first();
 
         if (! $schedules) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
@@ -125,23 +100,23 @@ class ScheduleController extends Controller
         return redirect()->route('teacher.schedule.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
-    public function close(Schedule $schedule)
-    {
-        $schedule = Schedule::find($schedule)->first();
-
-        $schedule->buka = false;
-        $schedule->save();
-
-        return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi ditutup']);
-    }
-
     public function open(Schedule $schedule)
     {
         $schedule = Schedule::find($schedule)->first();
 
-        $schedule->buka = true;
+        $schedule->presence = true;
         $schedule->save();
 
         return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi dibuka']);
+    }
+
+    public function close(Schedule $schedule)
+    {
+        $schedule = Schedule::find($schedule)->first();
+
+        $schedule->presence = false;
+        $schedule->save();
+
+        return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi ditutup']);
     }
 }

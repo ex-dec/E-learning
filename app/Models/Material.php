@@ -18,7 +18,7 @@ class Material extends Model
         'file_url',
         'grade_id',
         'content',
-        'link_video',
+        'video_url',
     ];
 
     public function grade()

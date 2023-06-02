@@ -9,7 +9,7 @@ class Presence extends Model
 {
     use HasFactory;
 
-    protected $table = 'presence';
+    protected $table = 'presences';
 
     protected $fillable = [
         'schedule_id',

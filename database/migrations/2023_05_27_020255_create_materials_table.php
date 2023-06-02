@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('file_url');
+            $table->string('file_url')->nullable();
             $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
             $table->text('content');
-            $table->string('link_video');
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }

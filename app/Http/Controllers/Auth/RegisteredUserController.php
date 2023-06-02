@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
+use App\Models\UserHasGrade;
 
 class RegisteredUserController extends Controller
 {
@@ -48,6 +49,11 @@ class RegisteredUserController extends Controller
 
         $role = Role::where('name', 'student')->first();
         $user->assignRole($role);
+
+        UserHasGrade::create([
+            'user_id' => $user->id,
+            'grade_id' => '1',
+        ]);
 
         return redirect(auth()->user()->getRedirectRoute());
     }
