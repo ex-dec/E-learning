@@ -14,6 +14,7 @@ class Presence extends Model
     protected $fillable = [
         'schedule_id',
         'user_id',
+        'created_at'
     ];
 
     public function schedule()

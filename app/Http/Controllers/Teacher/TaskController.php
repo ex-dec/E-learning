@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Teacher;
 use App\Http\Controllers\Controller;
 use App\Models\Grade;
 use App\Models\Task;
+use App\Models\TaskScore;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -103,6 +104,14 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $tasks = Task::find($task)->first();
+
+        if (! $tasks) {
+            return redirect()->route('teacher.task.index')->with(['error' => 'Data tidak ditemukan!']);
+        }
+
+        $task->delete();
+
+        return redirect()->route('teacher.task.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }

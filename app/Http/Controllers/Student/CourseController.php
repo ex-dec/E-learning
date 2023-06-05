@@ -6,13 +6,22 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Schedule;
 use App\Models\Material;
+use App\Models\Presence;
+use App\Models\Task;
+use App\Models\TaskScore;
+use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
     public function basicDashboard()
     {
+        $user_id = Auth::user()->id;
+        $schedule = Schedule::where('grade_id', '1')->first();
+        $schedule_id = $schedule->id;
         $schedules = Schedule::where('grade_id', '1')->get()->first();
-        return view('student.course.basic.index', compact('schedules'));
+        $presence = Presence::where('user_id', $user_id)->where('schedule_id', $schedule_id)->get();
+        return view('student.course.basic.index', compact('schedules', 'presence'));
     }
 
     public function intermediateDashboard()
@@ -29,76 +38,73 @@ class CourseController extends Controller
 
     public function basicMaterial()
     {
-        $materials = Material::where('grade_id', '1')->get();
+        $materials = Material::where('grade_id', '1')->whereNotNull('file_url')->get();
         $schedules = Schedule::where('grade_id', '1')->get()->first();
         return view('student.course.basic.material', compact('schedules', 'materials'));
     }
+
     public function intermediateMaterial()
     {
         $materials = Material::where('grade_id', '2')->get();
         $schedules = Schedule::where('grade_id', '2')->get()->first();
         return view('student.course.intermediate.material', compact('schedules', 'materials'));
     }
+
     public function advanceMaterial()
     {
         $materials = Material::where('grade_id', '3')->get();
         $schedules = Schedule::where('grade_id', '3')->get()->first();
         return view('student.course.advance.material', compact('schedules', 'materials'));
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+
+    public function basicVideo()
     {
-        //
+        $materials = Material::where('grade_id', '1')->whereNotNull('video_url')->get();
+        $schedules = Schedule::where('grade_id', '1')->get()->first();
+        return view('student.course.basic.video', compact('schedules', 'materials'));
     }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function intermediateVideo()
     {
-        //
+        $materials = Material::where('grade_id', '2')->whereNotNull('video_url')->get();
+        $schedules = Schedule::where('grade_id', '2')->get()->first();
+        return view('student.course.basic.video', compact('schedules', 'materials'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function advanceVideo()
     {
-        //
+        $materials = Material::where('grade_id', '3')->whereNotNull('video_url')->get();
+        $schedules = Schedule::where('grade_id', '3')->get()->first();
+        return view('student.course.basic.video', compact('schedules', 'materials'));
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function basicTask()
     {
-        //
+        $taskScore = TaskScore::where('user_id', Auth::user()->id)->get();
+        $tasks = Task::where('grade_id', '1')->get();
+        $schedules = Schedule::where('grade_id', '1')->get()->first();
+        return view('student.course.basic.task', compact('tasks', 'schedules', 'taskScore'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function intermediateTask()
     {
-        //
+        $taskScore = TaskScore::where('user_id', Auth::user()->id)->get();
+        $tasks = Task::where('grade_id', '2')->get();
+        $schedules = Schedule::where('grade_id', '2')->get()->first();
+        return view('student.course.basic.task', compact('tasks', 'schedules', 'taskScore'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function advanceTask()
     {
-        //
+        $taskScore = TaskScore::where('user_id', Auth::user()->id)->get();
+        $tasks = Task::where('grade_id', '3')->get();
+        $schedules = Schedule::where('grade_id', '3')->get()->first();
+        return view('student.course.basic.task', compact('tasks', 'schedules', 'taskScore'));
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function basicPresence(Schedule $schedule)
     {
-        //
+        $user_id = Auth::user()->id;
+        $schedule_id = $schedule->id;
+        Presence::create([
+            'user_id' => $user_id,
+            'schedule_id' => $schedule_id,
+        ]);
+        $schedules = Schedule::where('grade_id', '1')->get()->first();
+        return redirect()->route('student.course.basic.index');
     }
 }

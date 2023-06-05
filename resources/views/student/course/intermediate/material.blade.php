@@ -6,13 +6,17 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title font-weight-bolder text-dark">{{ $material->title}}</h5>
-                            <p class="card-text text-dark">{{ $material->content}}</p>
-                            <div class="col-md-12" style="font-size: 15px">
-                                <div class="fa fa-download float-right"></div>
-                                <div class="col-md-11" style="font-size: 15px">
+                            <h5 class="card-title font-weight-bolder text-dark">{{ $material->title }}</h5>
+                            <p class="card-text text-dark">{{ $material->content }}</p>
+                            <div class="col-md-12 text-right" style="font-size: 15px">
+                                <a href="{{ asset('/storage/posts/' . $material->file_url) }}" class="btn btn-sm btn-primary"
+                                    target="_blank">
                                     <div class="far fa-eye float-right"></div>
-                                </div>
+                                </a>
+                                <a href="{{ asset('/storage/posts/' . $material->file_url) }}"
+                                    class="btn btn-sm btn-primary" download>
+                                    <div class="fa fa-download float-right"></div>
+                                </a>
                             </div>
                         </div>
                     </div>

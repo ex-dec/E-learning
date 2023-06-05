@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])->name('schedule.close');
             Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
             Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
+            Route::resource('/score', App\Http\Controllers\Teacher\TaskScoreController::class);
+            Route::resource('/presence', App\Http\Controllers\Teacher\PresenceController::class);
         });
     });
     Route::name('student.')->prefix('/student')->group(function () {
@@ -63,14 +65,21 @@ Route::middleware('auth')->group(function () {
                 Route::name('.basic')->prefix('/basic')->group(function () {
                     Route::get('', [App\Http\Controllers\Student\CourseController::class, 'basicDashboard'])->name('');
                     Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'basicMaterial'])->name('.material');
+                    Route::get('/video', [App\Http\Controllers\Student\CourseController::class, 'basicVideo'])->name('.video');
+                    Route::get('/task', [App\Http\Controllers\Student\CourseController::class, 'basicTask'])->name('.task');
+                    Route::post('/presence/{schedule}', [App\Http\Controllers\Student\CourseController::class, 'basicPresence'])->name('.presence');
                 });
                 Route::name('.intermediate')->prefix('/intermediate')->group(function () {
                     Route::get('', [App\Http\Controllers\Student\CourseController::class, 'intermediateDashboard'])->name('');
                     Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'intermediateMaterial'])->name('.material');
+                    Route::get('/video', [App\Http\Controllers\Student\CourseController::class, 'intermediateVideo'])->name('.video');
+                    Route::get('/task', [App\Http\Controllers\Student\CourseController::class, 'intermediateTask'])->name('.task');
                 });
                 Route::name('.advance')->prefix('/advance')->group(function () {
                     Route::get('', [App\Http\Controllers\Student\CourseController::class, 'advanceDashboard'])->name('');
                     Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'advanceMaterial'])->name('.material');
+                    Route::get('/video', [App\Http\Controllers\Student\CourseController::class, 'advanceVideo'])->name('.video');
+                    Route::get('/task', [App\Http\Controllers\Student\CourseController::class, 'advanceTask'])->name('.task');
                 });
             });
             Route::name('schedule')->prefix('/schedule')->group(function () {

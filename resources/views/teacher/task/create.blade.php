@@ -19,7 +19,7 @@
                                     <div class="form-group">
                                         <label for="category" class="form-label">Kelas</label>
                                         <select class="form-control" name="grade_id" id="grade_id">
-                                            <option hidden>Pilih sKelas</option>
+                                            <option hidden>Pilih Kelas</option>
                                             @foreach ($grades as $grade)
                                                 <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                             @endforeach
