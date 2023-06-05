@@ -25,4 +25,9 @@ class Task extends Model
     {
         return $this->belongsTo(Grade::class, 'grade_id', 'id');
     }
+
+    public function taskScore()
+    {
+        return $this->hasMany(TaskScore::class, 'id', 'task_id');
+    }
 }

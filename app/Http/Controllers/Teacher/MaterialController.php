@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Teacher\MaterialRequest;
 use App\Models\Grade;
 use App\Models\Material;
 use Illuminate\Http\Request;
@@ -32,20 +33,17 @@ class MaterialController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MaterialRequest $request)
     {
-        $request->validate([
-            'title' => 'required|min:5',
-            'content' => 'required|min:10',
-        ]);
         $file = $request->file('file');
-        $file->storeAs('public/posts', $file->hashName());
+        $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
+
         Material::create([
-            'file_url' => $file->hashName(),
             'title' => $request->title,
             'grade_id' => $request->grade_id,
             'content' => $request->content,
-            'link_video' => $request->link_video,
+            'file_url' => $fileUrl,
+            'video_url' => $request->video_url,
         ]);
 
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Disimpan!']);
@@ -65,7 +63,7 @@ class MaterialController extends Controller
     public function edit(Material $material)
     {
         $material = Material::find($material)->first();
-        if (! $material) {
+        if (!$material) {
             return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
         }
         $gradeSelected = Grade::find($material->grade_id);
@@ -78,23 +76,18 @@ class MaterialController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Material $material)
+    public function update(MaterialRequest $request, Material $material)
     {
-        $request->validate([
-            'title' => 'required|min:5',
-            'content' => 'required|min:10',
-        ]);
         $file = $request->file('file');
-        $file->storeAs('public/posts', $file->hashName());
+        $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
 
         $material->update([
-            'file_url' => $file->hashName(),
             'nama' => $request->title,
             'grade_id' => $request->grade_id,
             'content' => $request->content,
-            'link_video' => $request->link_video,
+            'file_url' => $fileUrl,
+            'video_url' => $request->video_url,
         ]);
-
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
@@ -104,7 +97,7 @@ class MaterialController extends Controller
     public function destroy(Material $material)
     {
         $materials = Material::find($material)->first();
-        if (! $materials) {
+        if (!$materials) {
             return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
         }
         $material->delete();

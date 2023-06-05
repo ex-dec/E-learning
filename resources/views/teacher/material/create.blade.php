@@ -42,7 +42,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold">Link Video</label>
                                             <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                                name="link_video" value="{{ old('link_video') }}"
+                                                name="video_url" value="{{ old('video_url') }}"
                                                 placeholder="Masukkan Link Video">
                                         </div>
                                         @error('content')

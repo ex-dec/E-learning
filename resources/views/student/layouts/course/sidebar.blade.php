@@ -38,7 +38,13 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-        <a class="nav-link" href="akses-video-basic-siswa" style="pointer-events: none;">
+        @if ($schedules->grade->id == '1')
+            <a class="nav-link" href="{{ route('student.course.basic.video') }}">
+            @elseif ($schedules->grade->id == '2')
+                <a class="nav-link" href="{{ route('student.course.intermediate.video') }}">
+                @elseif ($schedules->grade->id == '3')
+                    <a class="nav-link" href="{{ route('student.course.advance.video') }}">
+        @endif
             <i class='far fa-play-circle' style='font-size:17px'></i>
             <span>Video</span>
         </a>
@@ -48,7 +54,13 @@
     <hr class="sidebar-divider">
 
     <li class="nav-item">
-        <a class="nav-link" href="tugas-online-siswa" style="pointer-events: none;">
+        @if ($schedules->grade->id == '1')
+            <a class="nav-link" href="{{ route('student.course.basic.task') }}">
+            @elseif ($schedules->grade->id == '2')
+                <a class="nav-link" href="{{ route('student.course.intermediate.task') }}">
+                @elseif ($schedules->grade->id == '3')
+                    <a class="nav-link" href="{{ route('student.course.advance.task') }}">
+        @endif
             <i class='far fa-file-alt' style='font-size:17px'></i>
             <span>Tugas</span>
         </a>

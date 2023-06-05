@@ -29,4 +29,9 @@ class Grade extends Model
     {
         return $this->hasMany(Material::class, 'id', 'grade_id');
     }
+
+    public function taskScore()
+    {
+        return $this->hasMany(TaskScore::class, 'id', 'grade_id');
+    }
 }

@@ -29,7 +29,7 @@
                                         <td>{{ $schedule->grade->name }}</td>
                                         <td>{{ $schedule->day_schedule }}</td>
                                         <td>{{ $schedule->time_start }} - {{ $schedule->time_end }}</td>
-                                        <td>
+                                        <td class="text-center" style="width: 15%">
                                             <a href={{ route('teacher.schedule.open', $schedule) }}
                                                 class="btn btn-sm btn-primary">Buka</a>
                                             <a href={{ route('teacher.schedule.close', $schedule) }}
@@ -42,12 +42,10 @@
                                                 Tutup
                                             @endif
                                         </td>
-
-                                        <td>{{ $schedule->aksi_jadwal }}
+                                        <td class="text-center" style="width: 15%">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('teacher.schedule.destroy', $schedule->id) }}"
-                                                method="POST">
-                                                <a href="{{ route('teacher.schedule.edit', $schedule->id) }}"
+                                                action="{{ route('teacher.schedule.destroy', $schedule) }}" method="POST">
+                                                <a href="{{ route('teacher.schedule.edit', $schedule) }}"
                                                     class="btn btn-sm btn-primary">Edit</a>
                                                 @csrf
                                                 @method('DELETE')

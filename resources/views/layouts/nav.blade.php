@@ -55,18 +55,28 @@
                     <span>Materi</span>
                 </a>
             </li>
-            <li>
             <li class="{{ Route::is('teacher.schedule.index') ? 'active' : '' }}">
                 <a href="{{ route('teacher.schedule.index')}}" class="link">
                     <i class="ti-notepad"></i>
                     <span>Jadwal</span>
                 </a>
             </li>
-            <li>
+            <li class="{{ Route::is('teacher.presence.index') ? 'active' : '' }}">
+                <a href="{{ route('teacher.presence.index')}}" class="link">
+                    <i class="ti-timer"></i>
+                    <span>Riwayat Presensi</span>
+                </a>
+            </li>
             <li class="{{ Route::is('teacher.task.index')? 'active' : '' }}">
                 <a href="{{ route('teacher.task.index')}}" class="link">
                     <i class="ti-book"></i>
                     <span>Tugas</span>
+                </a>
+            </li>
+            <li class="{{ Route::is('teacher.score.index')? 'active' : '' }}">
+                <a href="{{ route('teacher.score.index')}}" class="link">
+                    <i class="ti-cup"></i>
+                    <span>Nilai</span>
                 </a>
             </li>
             <li>
