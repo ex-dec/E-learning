@@ -37,7 +37,7 @@ class MaterialController extends Controller
     {
         $file = $request->file('file');
         $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
-
+        $fileUrl = str_replace("public/posts/", "", $fileUrl);
         Material::create([
             'title' => $request->title,
             'grade_id' => $request->grade_id,
@@ -80,7 +80,7 @@ class MaterialController extends Controller
     {
         $file = $request->file('file');
         $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
-
+        $fileUrl = str_replace("public/posts/", "", $fileUrl);
         $material->update([
             'nama' => $request->title,
             'grade_id' => $request->grade_id,

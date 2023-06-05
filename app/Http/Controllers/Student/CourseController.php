@@ -105,6 +105,6 @@ class CourseController extends Controller
             'schedule_id' => $schedule_id,
         ]);
         $schedules = Schedule::where('grade_id', '1')->get()->first();
-        return redirect()->route('student.course.basic.index');
+        return redirect()->route('student.course.basic');
     }
 }
