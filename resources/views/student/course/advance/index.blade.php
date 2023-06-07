@@ -21,11 +21,30 @@
                         </div>
                         <div class="row pb-3">
                             <div class="col-md-2 card-text text-dark text-center">
-                                <a href="#" class="btn btn-primary weight-100" style="pointer-events: none;">Presensi</a>
+                                @if ($schedules->presence && !$status)
+                                    <form action="{{ route('student.course.intermediate.presence', $schedules) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary weight-100">Presensi</button>
+                                    </form>
+                                @else
+                                    <a href="#" class="btn btn-secondary weight-100"
+                                        style="pointer-events: none;">Presensi
+                                    </a>
+                                @endif
                             </div>
-                            <div class="col-md-10 card-text text-dark text-right"><a href="{{ $schedules->link }}"
-                                    class="btn btn-primary">
-                                    <i class="fas fa-video"></i> Link</a></div>
+                            <div class="col-md-10 card-text text-dark text-right">
+                                @if ($status)
+                                    <a href="{{ $schedules->link }}" class="btn btn-primary">
+                                        <i class="fas fa-video"></i>
+                                        Link
+                                    </a>
+                                @else
+                                    <a href="" class="btn btn-secondary" style="pointer-events: none;">
+                                        <i class="fas fa-video"></i>
+                                        Link
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,10 +63,17 @@
                                     <td>Id</td>
                                     <td>Tanggal</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                @forelse ($presence as $presence)
+                                    <tr>
+                                        <td>{{ $presence->id }}</td>
+                                        <td>{{ $presence->created_at }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
 

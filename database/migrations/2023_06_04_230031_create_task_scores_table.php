@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('task_id')->constrained('tasks')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->decimal('score', 3, 2)->nullable();
+            $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedTinyInteger('score')->nullable();
             $table->timestamps();
         });
     }

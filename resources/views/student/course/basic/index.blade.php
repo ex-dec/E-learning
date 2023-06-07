@@ -21,20 +21,30 @@
                         </div>
                         <div class="row pb-3">
                             <div class="col-md-2 card-text text-dark text-center">
-                                @if ($schedules->presence)
+                                @if ($schedules->presence && !$status)
                                     <form action="{{ route('student.course.basic.presence', $schedules) }}" method="POST">
                                         @csrf
-                                        {{-- <input type="hidden" name="schedule" value="{{ $schedules }}"> --}}
                                         <button type="submit" class="btn btn-primary weight-100">Presensi</button>
                                     </form>
                                 @else
                                     <a href="#" class="btn btn-secondary weight-100"
-                                        style="pointer-events: none;">Presensi</a>
+                                        style="pointer-events: none;">Presensi
+                                    </a>
                                 @endif
                             </div>
-                            <div class="col-md-10 card-text text-dark text-right"><a href="{{ $schedules->link }}"
-                                    class="btn btn-primary">
-                                    <i class="fas fa-video"></i> Link</a></div>
+                            <div class="col-md-10 card-text text-dark text-right">
+                                @if ($status)
+                                    <a href="{{ $schedules->link }}" class="btn btn-primary">
+                                        <i class="fas fa-video"></i>
+                                        Link
+                                    </a>
+                                @else
+                                    <a href="" class="btn btn-secondary" style="pointer-events: none;">
+                                        <i class="fas fa-video"></i>
+                                        Link
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,10 +69,10 @@
                                         <td>{{ $presence->created_at }}</td>
                                     </tr>
                                 @empty
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
                                 @endforelse
                             </tbody>
                         </table>
