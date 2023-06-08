@@ -79,8 +79,8 @@
                     <span>Nilai</span>
                 </a>
             </li>
-            <li class="">
-                <a href="#" class="link">
+            <li class="{{ Route::is('teacher.pass.index')? 'active' : '' }}">
+                <a href="{{ route('teacher.pass.index')}}" class="link">
                     <i class="ti-bar-chart"></i>
                     <span>Siswa Lulus</span>
                 </a>
