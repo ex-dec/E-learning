@@ -47,15 +47,30 @@
                     </a>
                 </div>
                 <div class="col-xl-3 col-md-6">
-                    <div class="card bg-pattern">
-                        <div class="card-body">
-                            <div class="float-right">
-                                <i class="fa fa-file text-primary h4 ml-3"></i>
+                    @if (auth()->user()->getGradeId() == 4)
+                        <a href="">
+                            <div class="card bg-pattern">
+                                <div class="card-body">
+                                    <div class="float-right">
+                                        <i class="fa fa-file text-primary h4 ml-3"></i>
+                                    </div>
+                                    <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
+                                        Sertifikat</div>
+                                </div>
                             </div>
-                            <div class="text-xll font-weight-bold text-primary text-uppercase mb-0">
-                                Sertifikat</div>
+                        </a>
+                    @else
+                        <div class="card bg-pattern">
+                            <div class="card-body">
+                                <div class="float-right">
+                                    <i class="fa fa-file text-secondary h4 ml-3"></i>
+                                </div>
+                                <div class="text-xll font-weight-bold text-secondary text-uppercase mb-0">
+                                    Sertifikat</div>
+                            </div>
                         </div>
-                    </div>
+                    @endif
+
                 </div>
 
                 <!-- Custom fonts for this template-->
@@ -93,13 +108,13 @@
                                         <div class="col-md-6 single-note-item all-category note-social">
                                             <div class="card card-body">
                                                 <span class="side-stick"></span>
-                                                <h5 class="note-title text-truncate w-75 mb-0"> {{ $taskUser->title}}
+                                                <h5 class="note-title text-truncate w-75 mb-0"> {{ $taskUser->title }}
                                                     <i class="point fa fa-circle ml-1 font-10"></i>
                                                 </h5>
-                                                <p class="note-date font-12 text-muted">{{ $taskUser->dateline}}</p>
+                                                <p class="note-date font-12 text-muted">{{ $taskUser->dateline }}</p>
                                                 <div class="note-content">
                                                     <p class="note-inner-content text-muted">
-                                                        {{ $taskUser->content}}
+                                                        {{ $taskUser->content }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -111,13 +126,13 @@
                                             <div class="card card-body">
                                                 <span class="side-stick"></span>
                                                 <h5 class="note-title text-truncate w-75 mb-0">
-                                                    {{ $materialUser->title}}
+                                                    {{ $materialUser->title }}
                                                     <i class="point fa fa-circle ml-1 font-10"></i>
                                                 </h5>
                                                 {{-- <p class="note-date font-12 text-muted">01 April 2002</p> --}}
                                                 <div class="note-content">
                                                     <p class="note-inner-content text-muted">
-                                                        {{ $materialUser->content}}
+                                                        {{ $materialUser->content }}
                                                     </p>
                                                 </div>
                                             </div>

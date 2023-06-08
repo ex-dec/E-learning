@@ -22,5 +22,8 @@ class GradeSeeder extends Seeder
         $advance = Grade::create([
             'name' => 'advance',
         ]);
+        $lulus = Grade::create([
+            'name' => 'passed',
+        ]);
     }
 }
