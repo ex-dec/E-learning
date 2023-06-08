@@ -17,4 +17,9 @@ class UserHasGrade extends Model
     ];
 
     public $timestamps = false;
+
+    public function grade()
+    {
+        return $this->belongsTo(Grade::class, 'grade_id', 'id');
+    }
 }

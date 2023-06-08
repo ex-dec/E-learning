@@ -39,7 +39,7 @@ class CourseController extends Controller
                 ->from('schedule_logs')
                 ->where('schedule_id', $scheduleId)
                 ->whereNull('time_close');
-        })->orderBy('created_at', 'DESC')->get();
+        })->get();
         $status = $scheduleLog->isNotEmpty();
         return view('student.course.basic.index', compact('schedules', 'presence', 'status'));
     }

@@ -50,4 +50,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Presence::class, 'id', 'user_id');
     }
+
+    public function userHasGrade()
+    {
+        return $this->hasMany(UserHasGrade::class, 'id', 'user_id');
+    }
+
+    public function getGradeName()
+    {
+        $userId = Auth::user()->id;
+        $grade = UserHasGrade::where('user_id', $userId)->first();
+        $gradeName = Grade::find($grade->grade_id)->name;
+        return $gradeName;
+    }
 }

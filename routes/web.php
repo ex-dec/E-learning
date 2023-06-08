@@ -47,6 +47,9 @@ Route::middleware('auth')->group(function () {
             Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
             Route::resource('/score', App\Http\Controllers\Teacher\TaskScoreController::class);
             Route::resource('/presence', App\Http\Controllers\Teacher\PresenceController::class);
+            // Route::resource('/pass', App\Http\Controllers\Teacher\StudentPassController::class);
+            Route::get('/pass', [App\Http\Controllers\Teacher\StudentPassController::class, 'index'])->name('pass.index');
+            Route::post('/pass/{id}', [App\Http\Controllers\Teacher\StudentPassController::class, 'store'])->name('pass.store');
         });
     });
     Route::name('student.')->prefix('/student')->group(function () {
@@ -101,8 +104,6 @@ Route::get('/jadwal-user', function () {
 Route::get('/dashboard-siswa', function () {
     return view('siswa.dashboard');
 });
-
-Route::get('/tugas-user', [TugasController::class, 'index']);
 
 Route::get('/materi-siswa', function () {
     return view('siswa.materi');
