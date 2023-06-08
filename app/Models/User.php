@@ -63,4 +63,12 @@ class User extends Authenticatable
         $gradeName = Grade::find($grade->grade_id)->name;
         return $gradeName;
     }
+
+    public function getGradeId()
+    {
+        $userId = Auth::user()->id;
+        $grade = UserHasGrade::where('user_id', $userId)->first();
+        $gradeId = Grade::find($grade->grade_id)->id;
+        return $gradeId;
+    }
 }
