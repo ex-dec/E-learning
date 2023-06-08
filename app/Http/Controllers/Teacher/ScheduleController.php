@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Teacher\ScheduleRequest;
 use App\Models\Grade;
 use App\Models\Schedule;
+use App\Models\ScheduleLog;
+use Illuminate\Support\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -69,7 +71,7 @@ class ScheduleController extends Controller
     {
         $schedules = Schedule::find($schedule)->first();
 
-        if (! $schedules) {
+        if (!$schedules) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
         }
 
@@ -91,7 +93,7 @@ class ScheduleController extends Controller
     {
         $schedules = Schedule::find($schedule)->first();
 
-        if (! $schedules) {
+        if (!$schedules) {
             return redirect()->route('teacher.schedule.index')->with(['error' => 'Data tidak ditemukan!']);
         }
 
@@ -107,15 +109,26 @@ class ScheduleController extends Controller
         $schedule->presence = true;
         $schedule->save();
 
+        ScheduleLog::create([
+            'schedule_id' => $schedule->id,
+            'time_open' => Carbon::now()
+        ]);
+
         return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi dibuka']);
     }
 
     public function close(Schedule $schedule)
     {
-        $schedule = Schedule::find($schedule)->first();
+        $schedule = Schedule::find($schedule->id);
 
         $schedule->presence = false;
         $schedule->save();
+
+        $scheduleLog = ScheduleLog::where('schedule_id', $schedule->id)->whereNull('time_close')->first();
+        if ($scheduleLog) {
+            $scheduleLog->time_close = Carbon::now();
+            $scheduleLog->save();
+        }
 
         return redirect()->route('teacher.schedule.index')->with(['success' => 'Presensi ditutup']);
     }

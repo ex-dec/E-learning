@@ -30,8 +30,8 @@ class Schedule extends Model
         return $this->hasMany(Presence::class, 'id', 'schedule_id');
     }
 
-    public function getUserGrade()
+    public function scheduleLog()
     {
-
+        return $this->hasMany(ScheduleLog::class, 'id', 'schedule_id');
     }
 }

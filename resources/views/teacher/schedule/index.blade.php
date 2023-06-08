@@ -30,10 +30,17 @@
                                         <td>{{ $schedule->day_schedule }}</td>
                                         <td>{{ $schedule->time_start }} - {{ $schedule->time_end }}</td>
                                         <td class="text-center" style="width: 15%">
-                                            <a href={{ route('teacher.schedule.open', $schedule) }}
-                                                class="btn btn-sm btn-primary">Buka</a>
-                                            <a href={{ route('teacher.schedule.close', $schedule) }}
-                                                class="btn btn-sm btn-primary">Tutup</a>
+                                            @if ($schedule->presence)
+                                                <a href="" class="btn btn-sm btn-secondary"
+                                                    style="pointer-events: none;">Buka</a>
+                                                <a href={{ route('teacher.schedule.close', $schedule) }}
+                                                    class="btn btn-sm btn-primary">Tutup</a>
+                                            @else
+                                                <a href={{ route('teacher.schedule.open', $schedule) }}
+                                                    class="btn btn-sm btn-primary">Buka</a>
+                                                <a href="" class="btn btn-sm btn-secondary"
+                                                    style="pointer-events: none;">Tutup</a>
+                                            @endif
                                         </td>
                                         <td>
                                             @if ($schedule->presence)

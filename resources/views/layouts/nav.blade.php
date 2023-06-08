@@ -79,6 +79,12 @@
                     <span>Nilai</span>
                 </a>
             </li>
+            <li class="">
+                <a href="#" class="link">
+                    <i class="ti-bar-chart"></i>
+                    <span>Siswa Lulus</span>
+                </a>
+            </li>
             <li>
                 <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">
                     @csrf

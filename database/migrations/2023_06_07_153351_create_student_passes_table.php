@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('task_scores', function (Blueprint $table) {
+        Schema::create('student_passes', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('task_scores', function (Blueprint $table) {
-            $table->dropColumn('grade_id');
-        });
+        Schema::dropIfExists('student_passes');
     }
 };
