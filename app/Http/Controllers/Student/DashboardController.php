@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $scheduleUser = Schedule::where('grade_id', auth()->user()->getGradeId())->first();
         $taskUser = Task::where('grade_id', auth()->user()->getGradeId())->first();
         $materialUser = Material::where('grade_id', auth()->user()->getGradeId())->first();
+        $passedStatus = [];
         return view('student.dashboard', compact('schedules', 'scheduleUser', 'taskUser', 'materialUser'));
     }
 }

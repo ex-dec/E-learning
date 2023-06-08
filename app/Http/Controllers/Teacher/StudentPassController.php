@@ -35,7 +35,6 @@ class StudentPassController extends Controller
                     $presensiUser = Presence::where('schedule_id', $schedule->id)->where('user_id', $student->id)->get();
                     $scheduleLogCount = $scheduleLog->count();
                     $studentPresenceCount = $presensiUser->count();
-
                     $task = Task::where('grade_id', $hasGrade->grade->id)->get();
                     $taskScore = TaskScore::where('user_id', $student->id)->where('grade_id', $hasGrade->grade->id)->sum('score');
                     $taskCount = $task->count();
