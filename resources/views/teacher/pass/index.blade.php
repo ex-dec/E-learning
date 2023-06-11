@@ -37,14 +37,14 @@
                                             </form>
                                         </td> --}}
                                         <td>
-                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 50)
+                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 100)
                                                 Lulus
                                             @else
                                                 Tidak Lulus
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 50)
+                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 100)
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                     action="{{ route('teacher.pass.store', $student['studentId']) }}"
                                                     method="POST">
