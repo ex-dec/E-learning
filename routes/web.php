@@ -90,6 +90,7 @@ Route::middleware('auth')->group(function () {
             Route::name('schedule')->prefix('/schedule')->group(function () {
                 Route::get('', [App\Http\Controllers\Student\ScheduleController::class, 'index'])->name('');
             });
+            Route::get('/cert', [App\Http\Controllers\Student\DashboardController::class, 'create'])->name('cert');
         });
     });
 });

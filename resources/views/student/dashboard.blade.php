@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-xl-3 col-md-6">
                     @if (auth()->user()->getGradeId() == 4)
-                        <a href="">
+                        <a href="{{ route('student.cert')}}">
                             <div class="card bg-pattern">
                                 <div class="card-body">
                                     <div class="float-right">
