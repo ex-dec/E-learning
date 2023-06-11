@@ -41,7 +41,7 @@ class StudentPassController extends Controller
 
                     if ($scheduleLogCount > 0) {
                         if ($studentPresenceCount > 0) {
-                            $presencePercentage = ($studentPresenceCount / $scheduleLogCount) * 100;
+                            $presencePercentage = ($studentPresenceCount / 4) * 100;
                         } else {
                             $presencePercentage = 0;
                         }
