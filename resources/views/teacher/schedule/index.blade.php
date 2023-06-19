@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('teacher.schedule.create') }}" class="btn btn-md btn-success mb-3">Tambah Jadwal</a>
+                        <a href="{{ route('teacher.schedule.create') }}" class="btn btn-md btn-success mb-3">
+                            Tambah Jadwal
+                        </a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

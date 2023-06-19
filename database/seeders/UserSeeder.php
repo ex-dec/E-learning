@@ -38,15 +38,5 @@ class UserSeeder extends Seeder
             'user_id' => $siswa1->id,
             'grade_id' => '1',
         ]);
-        $siswa2 = User::create([
-            'name' => 'admin siswa',
-            'email' => 'adminsiswa2@admin.com',
-            'password' => bcrypt('adminsiswa'),
-        ]);
-        $siswa2->assignRole('student');
-        UserHasGrade::create([
-            'user_id' => $siswa2->id,
-            'grade_id' => '2',
-        ]);
     }
 }

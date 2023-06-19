@@ -26,25 +26,15 @@
                                         <td>{{ $student['grade'] }}</td>
                                         <td>{{ $student['averageScore'] }}</td>
                                         <td>{{ $student['presencePercentage'] }}</td>
-                                        {{-- <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('teacher.task.destroy', $score) }}" method="POST">
-                                                <a href="{{ route('teacher.task.edit', $score) }}"
-                                                    class="btn btn-sm btn-primary">Edit</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                                            </form>
-                                        </td> --}}
                                         <td>
-                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 100)
+                                            @if ($student['pass'])
                                                 Lulus
                                             @else
                                                 Tidak Lulus
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            @if ($student['averageScore'] >= 70 && $student['presencePercentage'] >= 100)
+                                            @if ($student['pass'])
                                                 <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                     action="{{ route('teacher.pass.store', $student['studentId']) }}"
                                                     method="POST">
@@ -72,16 +62,10 @@
 
 @section('js')
     <script>
-        //message with toastr
         @if (session()->has('success'))
-
-            toastr.success('{{ session('
-                                                                    success ') }}',
-                'BERHASIL!');
+            toastr.success('{{ session(' success ') }}','BERHASIL!');
         @elseif (session()->has('error'))
-
-            toastr.error('{{ session('
-                                                                    error ') }}', 'GAGAL!');
+            toastr.error('{{ session(' error ') }}', 'GAGAL!');
         @endif
     </script>
 @endsection

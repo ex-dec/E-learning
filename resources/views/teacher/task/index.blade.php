@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('teacher.task.create') }}" class="btn btn-md btn-success mb-3">Tambah Tugas</a>
+                        <a href="{{ route('teacher.task.create') }}" class="btn btn-md btn-success mb-3">
+                            Tambah Tugas
+                        </a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -61,11 +63,12 @@
         @if (session()->has('success'))
 
             toastr.success('{{ session('
-                                            success ') }}', 'BERHASIL!');
+                                                                    success ') }}',
+                'BERHASIL!');
         @elseif (session()->has('error'))
 
             toastr.error('{{ session('
-                                            error ') }}', 'GAGAL!');
+                                                                    error ') }}', 'GAGAL!');
         @endif
     </script>
 @endsection

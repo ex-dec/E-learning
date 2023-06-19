@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         @role('admin')
-        Admin &mdash;
+            Admin &mdash;
         @else
-        Guru &mdash;
+            Guru &mdash;
         @endrole
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
@@ -19,11 +19,9 @@
     <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/themify-icons/themify-icons.css">
     <link rel="stylesheet" href="/vendor/perfect-scrollbar/css/perfect-scrollbar.css">
-
     <!-- CSS for this page only -->
     @stack('css')
     <!-- End CSS  -->
-
     <link rel="stylesheet" href="/assets/css/style.min.css">
     <link rel="stylesheet" href="/assets/css/bootstrap-override.min.css">
     <link rel="stylesheet" id="theme-color" href="/assets/css/dark.min.css">

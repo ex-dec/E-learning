@@ -22,7 +22,8 @@
                                     <div class="form-group">
                                         <label for="category" class="form-label">Kelas</label>
                                         <select class="form-control" name="grade_id" id="grade_id">
-                                            <option hidden value="{{ $gradeSelected->id }}">{{ $gradeSelected->name }}</option>
+                                            <option hidden value="{{ $gradeSelected->id }}">{{ $gradeSelected->name }}
+                                            </option>
                                             @foreach ($grades as $grade)
                                                 <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                             @endforeach
@@ -49,8 +50,8 @@
                                             <label class="font-weight-bold">Link Tugas</label>
                                             <input type="url"
                                                 class="form-control @error('task_url') is-invalid @enderror" id="task_url"
-                                                name="task_url" rows="5"
-                                                placeholder="Masukkan Link" value="{{ $task->task_url}}"></textarea>
+                                                name="task_url" rows="5" placeholder="Masukkan Link"
+                                                value="{{ $task->task_url }}"></textarea>
                                             <!-- error message untuk content -->
                                             @error('content')
                                                 <div class="alert alert-danger mt-2">

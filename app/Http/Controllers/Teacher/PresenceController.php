@@ -13,7 +13,7 @@ class PresenceController extends Controller
      */
     public function index()
     {
-        $presences = Presence::all();
+        $presences = Presence::orderBy('created_at', 'desc')->get();
         return view('teacher.presence.index', compact('presences'));
     }
 

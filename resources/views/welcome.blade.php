@@ -9,7 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" />
+    {{-- <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon" /> --}}
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png">
     <link rel="stylesheet" href="lp/assets/css/animate.css" />
     <link rel="stylesheet" href="lp/assets/css/tailwind.css" />
 
@@ -18,384 +19,46 @@
     <script>
         new WOW().init();
     </script>
-    <title></title>
+    <title>Turkish Course</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark relative overflow-hidden bg-primary">
-        <div class="container ms-auto ">
-            <a class="navbar-brand" href="/" class="d-inline-block">
-                <img src="lp/assets/images/logo/logot.png" alt="" width="150" class="me-4">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/register">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/login">Login</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-    </nav>
-
+    <!-- Navbar Start -->
     <div id="home">
-        <div class="container">
-            <div class="-mx-4 flex flex-wrap items-center">
-                <div class="w-full px-4">
-                    <div class="hero-content wow fadeInUp mx-auto max-w-[780px] text-center" data-wow-delay=".2s">
-                        <h1
-                            class="mb-8 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug
-                                md:text-[45px] md:leading-snug">
-                    </div>
+        <nav class="navbar navbar-expand-lg navbar-dark relative overflow-hidden bg-primary">
+            <div class="container ms-auto ">
+                <a class="navbar-brand" href="/#home" class="d-inline-block">
+                    <img src="lp/assets/images/logo/logot.png" alt="" width="150" class="me-4">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#about">About</a>
+                        </li>
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/login">Login</a>
+                            </li>
+                        @endguest
+                        @auth
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page"
+                                    href="{{ auth()->user()->getRedirectRoute() }}">Dashboard</a>
+                            </li>
+                        @endauth
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="absolute bottom-0 -left-9 z-[-1]">
-            <svg width="134" height="106" viewBox="0 0 134 106" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="1.66667" cy="104" r="1.66667" transform="rotate(-90 1.66667 104)"
-                    fill="white" />
-                <circle cx="16.3333" cy="104" r="1.66667" transform="rotate(-90 16.3333 104)"
-                    fill="white" />
-                <circle cx="31" cy="104" r="1.66667" transform="rotate(-90 31 104)" fill="white" />
-                <circle cx="45.6667" cy="104" r="1.66667" transform="rotate(-90 45.6667 104)"
-                    fill="white" />
-                <circle cx="60.3333" cy="104" r="1.66667" transform="rotate(-90 60.3333 104)"
-                    fill="white" />
-                <circle cx="88.6667" cy="104" r="1.66667" transform="rotate(-90 88.6667 104)"
-                    fill="white" />
-                <circle cx="117.667" cy="104" r="1.66667" transform="rotate(-90 117.667 104)"
-                    fill="white" />
-                <circle cx="74.6667" cy="104" r="1.66667" transform="rotate(-90 74.6667 104)"
-                    fill="white" />
-                <circle cx="103" cy="104" r="1.66667" transform="rotate(-90 103 104)"
-                    fill="white" />
-                <circle cx="132" cy="104" r="1.66667" transform="rotate(-90 132 104)"
-                    fill="white" />
-                <circle cx="1.66667" cy="89.3333" r="1.66667" transform="rotate(-90 1.66667 89.3333)"
-                    fill="white" />
-                <circle cx="16.3333" cy="89.3333" r="1.66667" transform="rotate(-90 16.3333 89.3333)"
-                    fill="white" />
-                <circle cx="31" cy="89.3333" r="1.66667" transform="rotate(-90 31 89.3333)"
-                    fill="white" />
-                <circle cx="45.6667" cy="89.3333" r="1.66667" transform="rotate(-90 45.6667 89.3333)"
-                    fill="white" />
-                <circle cx="60.3333" cy="89.3338" r="1.66667" transform="rotate(-90 60.3333 89.3338)"
-                    fill="white" />
-                <circle cx="88.6667" cy="89.3338" r="1.66667" transform="rotate(-90 88.6667 89.3338)"
-                    fill="white" />
-                <circle cx="117.667" cy="89.3338" r="1.66667" transform="rotate(-90 117.667 89.3338)"
-                    fill="white" />
-                <circle cx="74.6667" cy="89.3338" r="1.66667" transform="rotate(-90 74.6667 89.3338)"
-                    fill="white" />
-                <circle cx="103" cy="89.3338" r="1.66667" transform="rotate(-90 103 89.3338)"
-                    fill="white" />
-                <circle cx="132" cy="89.3338" r="1.66667" transform="rotate(-90 132 89.3338)"
-                    fill="white" />
-                <circle cx="1.66667" cy="74.6673" r="1.66667" transform="rotate(-90 1.66667 74.6673)"
-                    fill="white" />
-                <circle cx="1.66667" cy="31.0003" r="1.66667" transform="rotate(-90 1.66667 31.0003)"
-                    fill="white" />
-                <circle cx="16.3333" cy="74.6668" r="1.66667" transform="rotate(-90 16.3333 74.6668)"
-                    fill="white" />
-                <circle cx="16.3333" cy="31.0003" r="1.66667" transform="rotate(-90 16.3333 31.0003)"
-                    fill="white" />
-                <circle cx="31" cy="74.6668" r="1.66667" transform="rotate(-90 31 74.6668)"
-                    fill="white" />
-                <circle cx="31" cy="31.0003" r="1.66667" transform="rotate(-90 31 31.0003)"
-                    fill="white" />
-                <circle cx="45.6667" cy="74.6668" r="1.66667" transform="rotate(-90 45.6667 74.6668)"
-                    fill="white" />
-                <circle cx="45.6667" cy="31.0003" r="1.66667" transform="rotate(-90 45.6667 31.0003)"
-                    fill="white" />
-                <circle cx="60.3333" cy="74.6668" r="1.66667" transform="rotate(-90 60.3333 74.6668)"
-                    fill="white" />
-                <circle cx="60.3333" cy="31.0001" r="1.66667" transform="rotate(-90 60.3333 31.0001)"
-                    fill="white" />
-                <circle cx="88.6667" cy="74.6668" r="1.66667" transform="rotate(-90 88.6667 74.6668)"
-                    fill="white" />
-                <circle cx="88.6667" cy="31.0001" r="1.66667" transform="rotate(-90 88.6667 31.0001)"
-                    fill="white" />
-                <circle cx="117.667" cy="74.6668" r="1.66667" transform="rotate(-90 117.667 74.6668)"
-                    fill="white" />
-                <circle cx="117.667" cy="31.0001" r="1.66667" transform="rotate(-90 117.667 31.0001)"
-                    fill="white" />
-                <circle cx="74.6667" cy="74.6668" r="1.66667" transform="rotate(-90 74.6667 74.6668)"
-                    fill="white" />
-                <circle cx="74.6667" cy="31.0001" r="1.66667" transform="rotate(-90 74.6667 31.0001)"
-                    fill="white" />
-                <circle cx="103" cy="74.6668" r="1.66667" transform="rotate(-90 103 74.6668)"
-                    fill="white" />
-                <circle cx="103" cy="31.0001" r="1.66667" transform="rotate(-90 103 31.0001)"
-                    fill="white" />
-                <circle cx="132" cy="74.6668" r="1.66667" transform="rotate(-90 132 74.6668)"
-                    fill="white" />
-                <circle cx="132" cy="31.0001" r="1.66667" transform="rotate(-90 132 31.0001)"
-                    fill="white" />
-                <circle cx="1.66667" cy="60.0003" r="1.66667" transform="rotate(-90 1.66667 60.0003)"
-                    fill="white" />
-                <circle cx="1.66667" cy="16.3336" r="1.66667" transform="rotate(-90 1.66667 16.3336)"
-                    fill="white" />
-                <circle cx="16.3333" cy="60.0003" r="1.66667" transform="rotate(-90 16.3333 60.0003)"
-                    fill="white" />
-                <circle cx="16.3333" cy="16.3336" r="1.66667" transform="rotate(-90 16.3333 16.3336)"
-                    fill="white" />
-                <circle cx="31" cy="60.0003" r="1.66667" transform="rotate(-90 31 60.0003)"
-                    fill="white" />
-                <circle cx="31" cy="16.3336" r="1.66667" transform="rotate(-90 31 16.3336)"
-                    fill="white" />
-                <circle cx="45.6667" cy="60.0003" r="1.66667" transform="rotate(-90 45.6667 60.0003)"
-                    fill="white" />
-                <circle cx="45.6667" cy="16.3336" r="1.66667" transform="rotate(-90 45.6667 16.3336)"
-                    fill="white" />
-                <circle cx="60.3333" cy="60.0003" r="1.66667" transform="rotate(-90 60.3333 60.0003)"
-                    fill="white" />
-                <circle cx="60.3333" cy="16.3336" r="1.66667" transform="rotate(-90 60.3333 16.3336)"
-                    fill="white" />
-                <circle cx="88.6667" cy="60.0003" r="1.66667" transform="rotate(-90 88.6667 60.0003)"
-                    fill="white" />
-                <circle cx="88.6667" cy="16.3336" r="1.66667" transform="rotate(-90 88.6667 16.3336)"
-                    fill="white" />
-                <circle cx="117.667" cy="60.0003" r="1.66667" transform="rotate(-90 117.667 60.0003)"
-                    fill="white" />
-                <circle cx="117.667" cy="16.3336" r="1.66667" transform="rotate(-90 117.667 16.3336)"
-                    fill="white" />
-                <circle cx="74.6667" cy="60.0003" r="1.66667" transform="rotate(-90 74.6667 60.0003)"
-                    fill="white" />
-                <circle cx="74.6667" cy="16.3336" r="1.66667" transform="rotate(-90 74.6667 16.3336)"
-                    fill="white" />
-                <circle cx="103" cy="60.0003" r="1.66667" transform="rotate(-90 103 60.0003)"
-                    fill="white" />
-                <circle cx="103" cy="16.3336" r="1.66667" transform="rotate(-90 103 16.3336)"
-                    fill="white" />
-                <circle cx="132" cy="60.0003" r="1.66667" transform="rotate(-90 132 60.0003)"
-                    fill="white" />
-                <circle cx="132" cy="16.3336" r="1.66667" transform="rotate(-90 132 16.3336)"
-                    fill="white" />
-                <circle cx="1.66667" cy="45.3336" r="1.66667" transform="rotate(-90 1.66667 45.3336)"
-                    fill="white" />
-                <circle cx="1.66667" cy="1.66683" r="1.66667" transform="rotate(-90 1.66667 1.66683)"
-                    fill="white" />
-                <circle cx="16.3333" cy="45.3336" r="1.66667" transform="rotate(-90 16.3333 45.3336)"
-                    fill="white" />
-                <circle cx="16.3333" cy="1.66683" r="1.66667" transform="rotate(-90 16.3333 1.66683)"
-                    fill="white" />
-                <circle cx="31" cy="45.3336" r="1.66667" transform="rotate(-90 31 45.3336)"
-                    fill="white" />
-                <circle cx="31" cy="1.66683" r="1.66667" transform="rotate(-90 31 1.66683)"
-                    fill="white" />
-                <circle cx="45.6667" cy="45.3336" r="1.66667" transform="rotate(-90 45.6667 45.3336)"
-                    fill="white" />
-                <circle cx="45.6667" cy="1.66683" r="1.66667" transform="rotate(-90 45.6667 1.66683)"
-                    fill="white" />
-                <circle cx="60.3333" cy="45.3338" r="1.66667" transform="rotate(-90 60.3333 45.3338)"
-                    fill="white" />
-                <circle cx="60.3333" cy="1.66707" r="1.66667" transform="rotate(-90 60.3333 1.66707)"
-                    fill="white" />
-                <circle cx="88.6667" cy="45.3338" r="1.66667" transform="rotate(-90 88.6667 45.3338)"
-                    fill="white" />
-                <circle cx="88.6667" cy="1.66707" r="1.66667" transform="rotate(-90 88.6667 1.66707)"
-                    fill="white" />
-                <circle cx="117.667" cy="45.3338" r="1.66667" transform="rotate(-90 117.667 45.3338)"
-                    fill="white" />
-                <circle cx="117.667" cy="1.66707" r="1.66667" transform="rotate(-90 117.667 1.66707)"
-                    fill="white" />
-                <circle cx="74.6667" cy="45.3338" r="1.66667" transform="rotate(-90 74.6667 45.3338)"
-                    fill="white" />
-                <circle cx="74.6667" cy="1.66707" r="1.66667" transform="rotate(-90 74.6667 1.66707)"
-                    fill="white" />
-                <circle cx="103" cy="45.3338" r="1.66667" transform="rotate(-90 103 45.3338)"
-                    fill="white" />
-                <circle cx="103" cy="1.66707" r="1.66667" transform="rotate(-90 103 1.66707)"
-                    fill="white" />
-                <circle cx="132" cy="45.3338" r="1.66667" transform="rotate(-90 132 45.3338)"
-                    fill="white" />
-                <circle cx="132" cy="1.66707" r="1.66667" transform="rotate(-90 132 1.66707)"
-                    fill="white" />
-            </svg>
-        </div>
-        <div class="absolute -top-6 -right-6 z-[-1]">
-            <svg width="134" height="106" viewBox="0 0 134 106" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
-                <circle cx="1.66667" cy="104" r="1.66667" transform="rotate(-90 1.66667 104)"
-                    fill="white" />
-                <circle cx="16.3333" cy="104" r="1.66667" transform="rotate(-90 16.3333 104)"
-                    fill="white" />
-                <circle cx="31" cy="104" r="1.66667" transform="rotate(-90 31 104)"
-                    fill="white" />
-                <circle cx="45.6667" cy="104" r="1.66667" transform="rotate(-90 45.6667 104)"
-                    fill="white" />
-                <circle cx="60.3333" cy="104" r="1.66667" transform="rotate(-90 60.3333 104)"
-                    fill="white" />
-                <circle cx="88.6667" cy="104" r="1.66667" transform="rotate(-90 88.6667 104)"
-                    fill="white" />
-                <circle cx="117.667" cy="104" r="1.66667" transform="rotate(-90 117.667 104)"
-                    fill="white" />
-                <circle cx="74.6667" cy="104" r="1.66667" transform="rotate(-90 74.6667 104)"
-                    fill="white" />
-                <circle cx="103" cy="104" r="1.66667" transform="rotate(-90 103 104)"
-                    fill="white" />
-                <circle cx="132" cy="104" r="1.66667" transform="rotate(-90 132 104)"
-                    fill="white" />
-                <circle cx="1.66667" cy="89.3333" r="1.66667" transform="rotate(-90 1.66667 89.3333)"
-                    fill="white" />
-                <circle cx="16.3333" cy="89.3333" r="1.66667" transform="rotate(-90 16.3333 89.3333)"
-                    fill="white" />
-                <circle cx="31" cy="89.3333" r="1.66667" transform="rotate(-90 31 89.3333)"
-                    fill="white" />
-                <circle cx="45.6667" cy="89.3333" r="1.66667" transform="rotate(-90 45.6667 89.3333)"
-                    fill="white" />
-                <circle cx="60.3333" cy="89.3338" r="1.66667" transform="rotate(-90 60.3333 89.3338)"
-                    fill="white" />
-                <circle cx="88.6667" cy="89.3338" r="1.66667" transform="rotate(-90 88.6667 89.3338)"
-                    fill="white" />
-                <circle cx="117.667" cy="89.3338" r="1.66667" transform="rotate(-90 117.667 89.3338)"
-                    fill="white" />
-                <circle cx="74.6667" cy="89.3338" r="1.66667" transform="rotate(-90 74.6667 89.3338)"
-                    fill="white" />
-                <circle cx="103" cy="89.3338" r="1.66667" transform="rotate(-90 103 89.3338)"
-                    fill="white" />
-                <circle cx="132" cy="89.3338" r="1.66667" transform="rotate(-90 132 89.3338)"
-                    fill="white" />
-                <circle cx="1.66667" cy="74.6673" r="1.66667" transform="rotate(-90 1.66667 74.6673)"
-                    fill="white" />
-                <circle cx="1.66667" cy="31.0003" r="1.66667" transform="rotate(-90 1.66667 31.0003)"
-                    fill="white" />
-                <circle cx="16.3333" cy="74.6668" r="1.66667" transform="rotate(-90 16.3333 74.6668)"
-                    fill="white" />
-                <circle cx="16.3333" cy="31.0003" r="1.66667" transform="rotate(-90 16.3333 31.0003)"
-                    fill="white" />
-                <circle cx="31" cy="74.6668" r="1.66667" transform="rotate(-90 31 74.6668)"
-                    fill="white" />
-                <circle cx="31" cy="31.0003" r="1.66667" transform="rotate(-90 31 31.0003)"
-                    fill="white" />
-                <circle cx="45.6667" cy="74.6668" r="1.66667" transform="rotate(-90 45.6667 74.6668)"
-                    fill="white" />
-                <circle cx="45.6667" cy="31.0003" r="1.66667" transform="rotate(-90 45.6667 31.0003)"
-                    fill="white" />
-                <circle cx="60.3333" cy="74.6668" r="1.66667" transform="rotate(-90 60.3333 74.6668)"
-                    fill="white" />
-                <circle cx="60.3333" cy="31.0001" r="1.66667" transform="rotate(-90 60.3333 31.0001)"
-                    fill="white" />
-                <circle cx="88.6667" cy="74.6668" r="1.66667" transform="rotate(-90 88.6667 74.6668)"
-                    fill="white" />
-                <circle cx="88.6667" cy="31.0001" r="1.66667" transform="rotate(-90 88.6667 31.0001)"
-                    fill="white" />
-                <circle cx="117.667" cy="74.6668" r="1.66667" transform="rotate(-90 117.667 74.6668)"
-                    fill="white" />
-                <circle cx="117.667" cy="31.0001" r="1.66667" transform="rotate(-90 117.667 31.0001)"
-                    fill="white" />
-                <circle cx="74.6667" cy="74.6668" r="1.66667" transform="rotate(-90 74.6667 74.6668)"
-                    fill="white" />
-                <circle cx="74.6667" cy="31.0001" r="1.66667" transform="rotate(-90 74.6667 31.0001)"
-                    fill="white" />
-                <circle cx="103" cy="74.6668" r="1.66667" transform="rotate(-90 103 74.6668)"
-                    fill="white" />
-                <circle cx="103" cy="31.0001" r="1.66667" transform="rotate(-90 103 31.0001)"
-                    fill="white" />
-                <circle cx="132" cy="74.6668" r="1.66667" transform="rotate(-90 132 74.6668)"
-                    fill="white" />
-                <circle cx="132" cy="31.0001" r="1.66667" transform="rotate(-90 132 31.0001)"
-                    fill="white" />
-                <circle cx="1.66667" cy="60.0003" r="1.66667" transform="rotate(-90 1.66667 60.0003)"
-                    fill="white" />
-                <circle cx="1.66667" cy="16.3336" r="1.66667" transform="rotate(-90 1.66667 16.3336)"
-                    fill="white" />
-                <circle cx="16.3333" cy="60.0003" r="1.66667" transform="rotate(-90 16.3333 60.0003)"
-                    fill="white" />
-                <circle cx="16.3333" cy="16.3336" r="1.66667" transform="rotate(-90 16.3333 16.3336)"
-                    fill="white" />
-                <circle cx="31" cy="60.0003" r="1.66667" transform="rotate(-90 31 60.0003)"
-                    fill="white" />
-                <circle cx="31" cy="16.3336" r="1.66667" transform="rotate(-90 31 16.3336)"
-                    fill="white" />
-                <circle cx="45.6667" cy="60.0003" r="1.66667" transform="rotate(-90 45.6667 60.0003)"
-                    fill="white" />
-                <circle cx="45.6667" cy="16.3336" r="1.66667" transform="rotate(-90 45.6667 16.3336)"
-                    fill="white" />
-                <circle cx="60.3333" cy="60.0003" r="1.66667" transform="rotate(-90 60.3333 60.0003)"
-                    fill="white" />
-                <circle cx="60.3333" cy="16.3336" r="1.66667" transform="rotate(-90 60.3333 16.3336)"
-                    fill="white" />
-                <circle cx="88.6667" cy="60.0003" r="1.66667" transform="rotate(-90 88.6667 60.0003)"
-                    fill="white" />
-                <circle cx="88.6667" cy="16.3336" r="1.66667" transform="rotate(-90 88.6667 16.3336)"
-                    fill="white" />
-                <circle cx="117.667" cy="60.0003" r="1.66667" transform="rotate(-90 117.667 60.0003)"
-                    fill="white" />
-                <circle cx="117.667" cy="16.3336" r="1.66667" transform="rotate(-90 117.667 16.3336)"
-                    fill="white" />
-                <circle cx="74.6667" cy="60.0003" r="1.66667" transform="rotate(-90 74.6667 60.0003)"
-                    fill="white" />
-                <circle cx="74.6667" cy="16.3336" r="1.66667" transform="rotate(-90 74.6667 16.3336)"
-                    fill="white" />
-                <circle cx="103" cy="60.0003" r="1.66667" transform="rotate(-90 103 60.0003)"
-                    fill="white" />
-                <circle cx="103" cy="16.3336" r="1.66667" transform="rotate(-90 103 16.3336)"
-                    fill="white" />
-                <circle cx="132" cy="60.0003" r="1.66667" transform="rotate(-90 132 60.0003)"
-                    fill="white" />
-                <circle cx="132" cy="16.3336" r="1.66667" transform="rotate(-90 132 16.3336)"
-                    fill="white" />
-                <circle cx="1.66667" cy="45.3336" r="1.66667" transform="rotate(-90 1.66667 45.3336)"
-                    fill="white" />
-                <circle cx="1.66667" cy="1.66683" r="1.66667" transform="rotate(-90 1.66667 1.66683)"
-                    fill="white" />
-                <circle cx="16.3333" cy="45.3336" r="1.66667" transform="rotate(-90 16.3333 45.3336)"
-                    fill="white" />
-                <circle cx="16.3333" cy="1.66683" r="1.66667" transform="rotate(-90 16.3333 1.66683)"
-                    fill="white" />
-                <circle cx="31" cy="45.3336" r="1.66667" transform="rotate(-90 31 45.3336)"
-                    fill="white" />
-                <circle cx="31" cy="1.66683" r="1.66667" transform="rotate(-90 31 1.66683)"
-                    fill="white" />
-                <circle cx="45.6667" cy="45.3336" r="1.66667" transform="rotate(-90 45.6667 45.3336)"
-                    fill="white" />
-                <circle cx="45.6667" cy="1.66683" r="1.66667" transform="rotate(-90 45.6667 1.66683)"
-                    fill="white" />
-                <circle cx="60.3333" cy="45.3338" r="1.66667" transform="rotate(-90 60.3333 45.3338)"
-                    fill="white" />
-                <circle cx="60.3333" cy="1.66707" r="1.66667" transform="rotate(-90 60.3333 1.66707)"
-                    fill="white" />
-                <circle cx="88.6667" cy="45.3338" r="1.66667" transform="rotate(-90 88.6667 45.3338)"
-                    fill="white" />
-                <circle cx="88.6667" cy="1.66707" r="1.66667" transform="rotate(-90 88.6667 1.66707)"
-                    fill="white" />
-                <circle cx="117.667" cy="45.3338" r="1.66667" transform="rotate(-90 117.667 45.3338)"
-                    fill="white" />
-                <circle cx="117.667" cy="1.66707" r="1.66667" transform="rotate(-90 117.667 1.66707)"
-                    fill="white" />
-                <circle cx="74.6667" cy="45.3338" r="1.66667" transform="rotate(-90 74.6667 45.3338)"
-                    fill="white" />
-                <circle cx="74.6667" cy="1.66707" r="1.66667" transform="rotate(-90 74.6667 1.66707)"
-                    fill="white" />
-                <circle cx="103" cy="45.3338" r="1.66667" transform="rotate(-90 103 45.3338)"
-                    fill="white" />
-                <circle cx="103" cy="1.66707" r="1.66667" transform="rotate(-90 103 1.66707)"
-                    fill="white" />
-                <circle cx="132" cy="45.3338" r="1.66667" transform="rotate(-90 132 45.3338)"
-                    fill="white" />
-                <circle cx="132" cy="1.66707" r="1.66667" transform="rotate(-90 132 1.66707)"
-                    fill="white" />
-            </svg>
-        </div>
+        </nav>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    <!-- ====== Hero Section End -->
+    <!-- Navbar End -->
 
     <!-- ====== Features Section Start -->
     <section class="pt-20 pb-8 lg:pt-[120px] lg:pb-[70px]">
@@ -439,8 +102,6 @@
                         <p class="mb-8 text-body-color lg:mb-11">
                             Berisi tentang materi berupa pdf maupun video
                         </p>
-                        <a href="javascript:void(0)" class="text-base font-medium text-body-color hover:text-primary">
-                        </a>
                     </div>
                 </div>
                 <div class="w-full px-4 md:w-1/2 lg:w-1/4">
@@ -496,6 +157,9 @@
                         </p>
                         <a href="javascript:void(0)" class="text-base font-medium text-body-color hover:text-primary">
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- ====== Features Section End -->
 
@@ -525,6 +189,5 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>

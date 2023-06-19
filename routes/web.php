@@ -41,20 +41,24 @@ Route::middleware('auth')->group(function () {
                 return view('dashboard');
             })->name('dashboard');
             Route::resource('/schedule', App\Http\Controllers\Teacher\ScheduleController::class);
-            Route::get('/schedule/open/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'open'])->name('schedule.open');
-            Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])->name('schedule.close');
+            Route::get('/schedule/open/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'open'])
+                ->name('schedule.open');
+            Route::get('/schedule/close/{schedule}', [App\Http\Controllers\Teacher\ScheduleController::class, 'close'])
+                ->name('schedule.close');
             Route::resource('/material', App\Http\Controllers\Teacher\MaterialController::class);
             Route::resource('/task', App\Http\Controllers\Teacher\TaskController::class);
             Route::resource('/score', App\Http\Controllers\Teacher\TaskScoreController::class);
             Route::resource('/presence', App\Http\Controllers\Teacher\PresenceController::class);
-            // Route::resource('/pass', App\Http\Controllers\Teacher\StudentPassController::class);
-            Route::get('/pass', [App\Http\Controllers\Teacher\StudentPassController::class, 'index'])->name('pass.index');
-            Route::post('/pass/{id}', [App\Http\Controllers\Teacher\StudentPassController::class, 'store'])->name('pass.store');
+            Route::get('/pass', [App\Http\Controllers\Teacher\StudentPassController::class, 'index'])
+                ->name('pass.index');
+            Route::post('/pass/{id}', [App\Http\Controllers\Teacher\StudentPassController::class, 'store'])
+                ->name('pass.store');
         });
     });
     Route::name('student.')->prefix('/student')->group(function () {
         Route::group(['middleware' => ['role:student,web']], function () {
-            Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])->name('dashboard');
+            Route::get('/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index'])
+                ->name('dashboard');
             Route::name('material')->prefix('/material')->group(function () {
                 Route::get('', [App\Http\Controllers\Student\MaterialController::class, 'index'])->name('');
                 Route::name('.basic.')->prefix('/basic')->group(function () {
@@ -67,10 +71,14 @@ Route::middleware('auth')->group(function () {
             Route::name('course')->prefix('/course')->group(function () {
                 Route::name('.basic')->prefix('/basic')->group(function () {
                     Route::get('', [App\Http\Controllers\Student\CourseController::class, 'basicDashboard'])->name('');
-                    Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'basicMaterial'])->name('.material');
-                    Route::get('/video', [App\Http\Controllers\Student\CourseController::class, 'basicVideo'])->name('.video');
-                    Route::get('/task', [App\Http\Controllers\Student\CourseController::class, 'basicTask'])->name('.task');
-                    Route::post('/presence/{schedule}', [App\Http\Controllers\Student\CourseController::class, 'basicPresence'])->name('.presence');
+                    Route::get('/material', [App\Http\Controllers\Student\CourseController::class, 'basicMaterial'])
+                        ->name('.material');
+                    Route::get('/video', [App\Http\Controllers\Student\CourseController::class, 'basicVideo'])
+                        ->name('.video');
+                    Route::get('/task', [App\Http\Controllers\Student\CourseController::class, 'basicTask'])
+                        ->name('.task');
+                    Route::post('/presence/{schedule}', [App\Http\Controllers\Student\CourseController::class, 'basicPresence'])
+                        ->name('.presence');
                 });
                 Route::name('.intermediate')->prefix('/intermediate')->group(function () {
                     Route::get('', [App\Http\Controllers\Student\CourseController::class, 'intermediateDashboard'])->name('');

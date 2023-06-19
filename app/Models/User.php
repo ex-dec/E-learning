@@ -42,7 +42,6 @@ class User extends Authenticatable
         } else {
             $path = '/student/dashboard/';
         }
-
         return $path;
     }
 

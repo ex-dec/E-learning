@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('teacher.score.create') }}" class="btn btn-md btn-success mb-3">Tambah Nilai</a>
+                        <a href="{{ route('teacher.score.create') }}" class="btn btn-md btn-success mb-3">
+                            Tambah Nilai
+                        </a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -30,8 +32,8 @@
                                         <td>{{ $score->score }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                                action="{{ route('teacher.task.destroy', $score) }}" method="POST">
-                                                <a href="{{ route('teacher.task.edit', $score) }}"
+                                                action="{{ route('teacher.score.destroy', $score) }}" method="POST">
+                                                <a href="{{ route('teacher.score.edit', $score) }}"
                                                     class="btn btn-sm btn-primary">Edit</a>
                                                 @csrf
                                                 @method('DELETE')
@@ -57,13 +59,9 @@
     <script>
         //message with toastr
         @if (session()->has('success'))
-
-            toastr.success('{{ session('
-                                            success ') }}', 'BERHASIL!');
+            toastr.success('{{ session('success ') }}', 'BERHASIL!');
         @elseif (session()->has('error'))
-
-            toastr.error('{{ session('
-                                            error ') }}', 'GAGAL!');
+            toastr.error('{{ session('error ') }}', 'GAGAL!');
         @endif
     </script>
 @endsection

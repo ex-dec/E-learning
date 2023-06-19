@@ -6,7 +6,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('teacher.material.create') }}" class="btn btn-md btn-success mb-3">Tambah Materi</a>
+                        <a href="{{ route('teacher.material.create') }}" class="btn btn-md btn-success mb-3">
+                            Tambah Materi
+                        </a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -27,28 +29,32 @@
                                         <td>{{ $material->grade->name }}</td>
                                         <td>{{ $material->content }}</td>
                                         <td>
-                                            @if ($material->file_url == null)
-                                                <a href="" class="btn btn-sm btn-secondary"
-                                                    style="pointer-events: none;">Open</a>
-                                            @else
+                                            @if ($material->file_url)
                                                 <a href="{{ asset('/storage/posts/' . $material->file_url) }}"
                                                     class="btn btn-sm btn-primary">Open</a>
+                                            @else
+                                                <a href="" class="btn btn-sm btn-secondary"
+                                                    style="pointer-events: none;">Open</a>
                                             @endif
 
                                         </td>
                                         <td>
-                                            @if ($material->video_url == null)
-                                                <a href="" class="btn btn-sm btn-secondary"
-                                                    style="pointer-events: none;">Open</a>
+                                            @if ($material->video_url)
+                                                <a href="{{ $material->video_url }}" class="btn btn-sm btn-primary">
+                                                    Open
+                                                </a>
                                             @else
-                                                <a href="{{ $material->video_url }}" class="btn btn-sm btn-primary">Open</a>
+                                                <a href="" class="btn btn-sm btn-secondary"
+                                                    style="pointer-events: none;">Open
+                                                </a>
                                             @endif
                                         </td>
                                         <td class="text-center" style="width: 15%">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');"
                                                 action="{{ route('teacher.material.destroy', $material) }}" method="POST">
                                                 <a href="{{ route('teacher.material.edit', $material) }}"
-                                                    class="btn btn-sm btn-primary">Edit</a>
+                                                    class="btn btn-sm btn-primary">Edit
+                                                </a>
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
@@ -72,12 +78,9 @@
 
 @section('js')
     <script>
-        //message with toastr
         @if (session()->has('success'))
-
             toastr.success('{{ session('success') }}', 'BERHASIL!');
         @elseif (session()->has('error'))
-
             toastr.error('{{ session('error') }}', 'GAGAL!');
         @endif
     </script>

@@ -58,13 +58,17 @@ class StudentPassController extends Controller
                     } else {
                         $averageScore = 0;
                     }
-
+                    $pass = false;
+                    if($averageScore >= 70 && $presencePercentage >= 100){
+                        $pass = true;
+                    }
                     $studentObj[] = [
                         'studentId' => $student->id,
                         'name' => $namaUser,
                         'grade' => $hasGrade->grade->name,
                         'presencePercentage' => $presencePercentage,
-                        'averageScore' => $averageScore
+                        'averageScore' => $averageScore,
+                        'pass' => $pass
                     ];
                 }
             }

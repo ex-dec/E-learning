@@ -24,11 +24,6 @@
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             name="email" value="{{ $teacher->email }}" placeholder="Masukkan Email Guru">
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <label class="font-weight-bold">Password Guru</label>
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            name="password" value="{{ $teacher->password }}" placeholder="Masukkan Password">
-                                    </div> --}}
                                     <button type="submit" class="btn btn-md btn-primary">Simpan</button>
                                     <button type="reset" class="btn btn-md btn-warning">Reset</button>
                             </form>

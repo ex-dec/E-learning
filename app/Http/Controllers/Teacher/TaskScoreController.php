@@ -67,7 +67,10 @@ class TaskScoreController extends Controller
      */
     public function edit(TaskScore $taskScore)
     {
-        //
+        $users = User::role('student')->get();
+        $tasks = Task::all();
+        $grades = Grade::all();
+        return view('teacher.score.edit', compact('users', 'tasks', 'grades'));
     }
 
     /**
