@@ -4,7 +4,7 @@ namespace App\Http\Requests\Teacher;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ScheduleRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -15,11 +15,10 @@ class ScheduleRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'time_start' => 'required',
-            'time_end' => 'required',
-            'day_schedule' => 'required',
+            'content' => 'required',
+            'dateline' => 'nullable|date',
             'grade_id' => 'required',
-            'link' => 'nullable',
+            'task_url' => 'nullable|url',
         ];
     }
 }

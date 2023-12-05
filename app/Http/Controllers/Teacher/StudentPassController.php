@@ -9,7 +9,6 @@ use App\Models\ScheduleLog;
 use App\Models\StudentPass;
 use App\Models\Task;
 use App\Models\TaskScore;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserHasGrade;
 
@@ -22,14 +21,11 @@ class StudentPassController extends Controller
     {
         $students = User::role('student')->get();
         $studentObj = [];
-
         foreach ($students as $student) {
             $namaUser = $student->name;
             $hasGrade = UserHasGrade::where('user_id', $student->id)->first();
-
             if ($hasGrade) {
                 $schedule = Schedule::where('grade_id', $hasGrade->grade->id)->first();
-
                 if ($schedule) {
                     $scheduleLog = ScheduleLog::where('schedule_id', $schedule->id)->get();
                     $presensiUser = Presence::where('schedule_id', $schedule->id)->where('user_id', $student->id)->get();
@@ -59,7 +55,7 @@ class StudentPassController extends Controller
                         $averageScore = 0;
                     }
                     $pass = false;
-                    if($averageScore >= 70 && $presencePercentage >= 100){
+                    if ($averageScore >= 70 && $presencePercentage >= 100) {
                         $pass = true;
                     }
                     $studentObj[] = [
@@ -76,17 +72,6 @@ class StudentPassController extends Controller
         return view('teacher.pass.index', compact('studentObj'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store($id)
     {
         $student = User::where('id', $id)->first();
@@ -98,37 +83,5 @@ class StudentPassController extends Controller
         $grade->grade_id++;
         $grade->save();
         return redirect()->route('teacher.pass.index');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(StudentPass $studentPass)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(StudentPass $studentPass)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, StudentPass $studentPass)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(StudentPass $studentPass)
-    {
-        //
     }
 }

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Teacher\MaterialRequest;
 use App\Models\Grade;
 use App\Models\Material;
-use Illuminate\Http\Request;
 
 class MaterialController extends Controller
 {
@@ -25,22 +24,15 @@ class MaterialController extends Controller
     public function store(MaterialRequest $request)
     {
         $fileUrl = $this->storeFile($request);
-        Material::create([
-            'title' => $request->title,
-            'grade_id' => $request->grade_id,
-            'content' => $request->content,
-            'file_url' => $fileUrl,
-            'video_url' => $request->video_url,
-        ]);
+        $request['file_url'] = $fileUrl;
+        $validated = $request->validated();
+        Material::create($validated);
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     public function edit(Material $material)
     {
-        $material = Material::find($material)->first();
-        if (!$material) {
-            return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
-        }
+        $this->checkMaterial($material);
         $gradeSelected = Grade::find($material->grade_id);
         $grades = Grade::all();
         return view('teacher.material.edit', compact('material', 'grades', 'gradeSelected'));
@@ -48,34 +40,33 @@ class MaterialController extends Controller
 
     public function update(MaterialRequest $request, Material $material)
     {
-        $file = $request->file('file');
-        $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
-        $fileUrl = str_replace("public/posts/", "", $fileUrl);
-        $material->update([
-            'nama' => $request->title,
-            'grade_id' => $request->grade_id,
-            'content' => $request->content,
-            'file_url' => $fileUrl,
-            'video_url' => $request->video_url,
-        ]);
+        $fileUrl = $this->storeFile($request);
+        $request['file_url'] = $fileUrl;
+        $validated = $request->validated();
+        $material->update($validated);
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     public function destroy(Material $material)
     {
-        $materials = Material::find($material)->first();
-        if (!$materials) {
-            return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
-        }
+        $this->checkMaterial($material);
         $material->delete();
         return redirect()->route('teacher.material.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
-    public function storeFile(MaterialRequest $request)
+    private function storeFile(MaterialRequest $request)
     {
         $file = $request->file('file');
         $fileUrl = $file ? $file->storeAs('public/posts', $file->hashName()) : null;
-        $fileUrl = str_replace("public/posts/", "", $fileUrl);
+        $fileUrl = str_replace('public/posts/', '', $fileUrl);
         return $fileUrl;
+    }
+
+    private function checkMaterial(Material $material)
+    {
+        $material = Material::find($material)->first();
+        if (!$material) {
+            return redirect()->route('teacher.material.index')->with(['error' => 'Data tidak ditemukan!']);
+        }
     }
 }

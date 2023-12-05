@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
         $this->createStudentUser();
     }
 
-    public function createAdminUser()
+    private function createAdminUser()
     {
         $admin = User::create([
             'name' => 'admin',
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         $admin->assignRole('admin');
     }
 
-    public function createTeacherUser()
+    private function createTeacherUser()
     {
         $teacher = User::create([
             'name' => 'admin guru',
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         $teacher->assignRole('teacher');
     }
 
-    public function createStudentUser()
+    private function createStudentUser()
     {
         $student1 = User::create([
             'name' => 'admin siswa',

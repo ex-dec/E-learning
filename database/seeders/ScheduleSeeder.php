@@ -14,7 +14,7 @@ class ScheduleSeeder extends Seeder
         $this->createAdvanceSchedule();
     }
 
-    public function createBasicSchedule(): void
+    private function createBasicSchedule(): void
     {
         Schedule::create([
             'title' => 'Day 1 Basic Class',
@@ -26,7 +26,7 @@ class ScheduleSeeder extends Seeder
         ]);
     }
 
-    public function createIntermediateSchedule(): void
+    private function createIntermediateSchedule(): void
     {
         Schedule::create([
             'title' => 'Day 1 Intermediate Class',
@@ -38,7 +38,7 @@ class ScheduleSeeder extends Seeder
         ]);
     }
 
-    public function createAdvanceSchedule(): void
+    private function createAdvanceSchedule(): void
     {
         Schedule::create([
             'title' => 'Day 1 Advance Class',

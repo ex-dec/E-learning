@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -103,62 +103,9 @@ Route::middleware('auth')->group(function () {
     });
 });
 
-Route::get('/materi-user', function () {
-    return view('user.materi');
-});
-Route::get('/jadwal-user', function () {
-    return view('user.jadwal');
-});
-
-Route::get('/dashboard-siswa', function () {
-    return view('siswa.dashboard');
-});
-
-Route::get('/materi-siswa', function () {
-    return view('siswa.materi');
-});
-
-Route::get('/jadwal-online-siswa', function () {
-    return view('siswa.jadwal-online');
-});
-
-Route::get('/akses-kelas-basic-siswa', function () {
-    return view('siswa.akses-kelas-basic');
-});
-
-Route::get('/akses-video-basic-siswa', function () {
-    return view('siswa.akses-video-basic');
-});
-
-Route::get('/akses-kelas-intermediate-siswa', function () {
-    return view('siswa.akses-kelas-intermediate');
-});
-
-Route::get('/akses-kelas-advance-siswa', function () {
-    return view('siswa.akses-kelas-advance');
-});
-
-Route::get('/tugas-online-siswa', function () {
-    return view('siswa.tugas-online');
-});
-
-Route::get('/materi-detail-siswa', function () {
-    return view('siswa.materi-detail');
-});
-
-
-
-Route::get('getCourse/{id}', function ($id) {
-    $course = App\Models\Grade::where('grade_id', $id)->get();
-
-    return response()->json($course);
-});
-
 Route::prefix('presensi')->group(function () {
     Route::get('/get/{jadwalId}', [PresensiController::class, 'showByJadwalId']);
     Route::get('/{jadwalId}', [PresensiController::class, 'store']);
 });
-// Route::get('/', function () {
-//     return view('tugas.index');
 
 require __DIR__ . '/auth.php';
