@@ -10,32 +10,41 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        $this->createAdminUser();
+        $this->createTeacherUser();
+        $this->createStudentUser();
+    }
+
+    public function createAdminUser()
+    {
         $admin = User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('admin'),
         ]);
         $admin->assignRole('admin');
-        $test = User::create([
-            'name' => 'test',
-            'email' => 'test@admin.com',
-            'password' => bcrypt('test'),
-        ]);
-        $test->assignRole('admin');
-        $guru = User::create([
+    }
+
+    public function createTeacherUser()
+    {
+        $teacher = User::create([
             'name' => 'admin guru',
             'email' => 'adminguru@admin.com',
             'password' => bcrypt('adminguru'),
         ]);
-        $guru->assignRole('teacher');
-        $siswa1 = User::create([
+        $teacher->assignRole('teacher');
+    }
+
+    public function createStudentUser()
+    {
+        $student1 = User::create([
             'name' => 'admin siswa',
             'email' => 'adminsiswa@admin.com',
             'password' => bcrypt('adminsiswa'),
         ]);
-        $siswa1->assignRole('student');
+        $student1->assignRole('student');
         UserHasGrade::create([
-            'user_id' => $siswa1->id,
+            'user_id' => $student1->id,
             'grade_id' => '1',
         ]);
     }
